@@ -1,0 +1,50 @@
+---
+title: "R for Beginners"
+author: "C. Tobin Magle"
+date: "February 8, 2016"
+output: html_document
+---
+#Learning Objectives
+
+## After completing this tutorial, you will be able to 
+* load tabular data into R
+* calculate summary statistics for these data
+* create a publication-quality graph
+
+#Introducing R Studio
+R studio makes programming in R easier. See what the different windows
+represent below
+
+**Layout Overview:** ![](Rstudio.png)
+
+#R Syntax
+
+One of the hardest things about any programming is remembering the syntax. 
+Missing one semicolon or mispelling a variable or function name cause your code 
+to fail. Luckily, you can use scripts to save code that you have written, with 
+notes to indicate what the code does.
+
+###Assignment operator
+One of the most basic things to do in programming is to assign a value to a 
+variable. Let's say you want to assign the value 4 to the variable x. 
+To do this in R, use the following syntax: 
+
+```{r}
+x<-4
+```
+
+Now, check your work. When you type in 'x'
+
+```{r}
+x
+```
+
+R outputs the number 4. 
+
+###Why not use =?
+
+The equal sign (=)serves a different purpose in R. Instead of assigning values 
+to variables, it's used to define arguments to functions.
+
+Let's say you have a data table in a file called 
+
