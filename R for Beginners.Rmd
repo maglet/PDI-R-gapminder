@@ -9,7 +9,7 @@ http://www.datacarpentry.org/R-ecology/
 
 #Learning Objectives
 
-## After completing this tutorial, you will be able to 
+### After completing this tutorial, you will be able to 
 * load tabular data into R
 * calculate summary statistics for these data
 * create a publication-quality graph
@@ -24,19 +24,20 @@ represent below
 **Lower left**: where the code is executed  
 **Lower Right**: where to view help files, plots, and loaded files  
 
-#Getting ready to work
-One of the hardest things about any programming is remembering the syntax. 
+#Getting ready to code
+One of the hardest things about any programming language is remembering the syntax. 
 Missing one semicolon or mispelling a variable or function name cause your code 
 to fail. Luckily, you can use scripts to save code that you have written, with 
 notes to indicate what the code does.
 
 ###Open a script file
-Scripts let you save your code to run whenever you want. To open a new script:
-* Go to the __File__ menu
-* Select __NewFile__
-* Select __R Script__
+Scripts let you save your code to run whenever you want. To open a new script:   
 
-Now save the script to where you want to work. Every time you make changes to the script, the name of the script turns red, and a star appears after the name. Go to __File>Save__ to save the file. You can also use the appropriate short key (ctrl-s for PC, command-s for MacOS).  
+* Go to the __File__ menu  
+* Select __NewFile__  
+* Select __R Script__  
+
+Now save the script to where you want to work. Every time you make changes to the script, the name of the script turns red, and a star appears after the name. Go to __File>Save__ to save the file. You can also use the appropriate short key (__ctrl-s__ for PC, __command-s__ for MacOS).  
 
 **Remember: Save early, save often!**
 
@@ -44,6 +45,7 @@ Now save the script to where you want to work. Every time you make changes to th
 Since we're going to be downloading and importing files, it's important to set 
 your working directory so R knows where to look for the files. To set your 
 working directory:
+
 * Go to the __Session__ menu
 * Select __Set Working Directory__
 * Select __Source File Location__
@@ -53,8 +55,12 @@ and your files are in a different location for some reason, you can choose a
 different working directory by selecting __Choose Directory__, but for the 
 purposes of this tutorial, let's just keep it in the script location. 
 
-#R Syntax
-Now we'll go over some really useful function to use in R.
+#Operators
+Operaters are used to perform mathematical and logical operations. But more simply, they allow you to assign values to variables and combind/compare their values. 
+
+Operators can be broken into 4 catergories: __assignment__, __logical__, __arithmetic__, __relational__
+
+You can find a more thorough discussion of these operators [here](http://www.programiz.com/r-programming/operator), but for now we'll focus on assignment operators.
 
 ###Assignment operator
 One of the most basic things to do in programming is to assign a value to a 
@@ -73,8 +79,6 @@ x #print x to the output screen
 
 R outputs the number 4. 
 
-Type __x<-4__ in your script. On the next line, type x. (Remember to save as you go!)
-
 How do we send this code to the **Console** (lower left window) to actually run the code? There's a short key for that! 
 * Put your cursor on the line of code you'd like to run
 * Use ctrl-Enter to send that line of code to the console
@@ -82,7 +86,13 @@ How do we send this code to the **Console** (lower left window) to actually run 
 * Repeat as necessary
 * you can also highlight a block of code
 
+Your __Console__ should look like this now (lower left window)  
 
+![](sendtoconsole1.png)
+
+Also, you should see the variable x in your __Global Environment__ (upper right window)  
+
+![](globalenv1.png)
 
 ###Why not use =?
 The equal sign (=) works the same as the assignment operator [in most cases](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html).
@@ -90,6 +100,19 @@ The equal sign (=) works the same as the assignment operator [in most cases](htt
 It also serves a separate purpose in R. Instead of assigning values 
 to variables, it's used to define arguments to functions. We'll show you what
 this means as we start to use functions later in this tutorial.
+
+So, it's a matter of preference. This tutorial will use <- for clarity.
+
+#Functions
+Functions are discete units of R code that allow you to perform specific tasks. You can find functions:
+
+* __In the R base package__: no extra installation required. 
+* __In external packages__: because R is open source, many people create their own functions for specific purposes and make them available in the CRAN repository. 
+* __Make your own!__: you can write your own functions. 
+
+We'll be using functions from the base package in this tutorial.
+
+Now we'll go over some really useful functions to use in R.
 
 ###Loading files
 You can also use the assignment operator in conjunction with a function called 
@@ -122,7 +145,7 @@ This command will open the help file for the function in the lower right of the 
 
 For example, this is how you'd pull up the help file for __download.file__
 ```{r}
-?download.file
+?download.file # get R documantation for download.file function
 ```
 
 It takes a while to learn how to effectively read the R help files, but don't worry. We will explain all of the functions and arguments you need in this tutorial. You shouldn't have to rely much on the help files. 
@@ -148,3 +171,8 @@ summary
 
 
 ####Plotting data
+
+#Resources
+Congrats! Now you know enough R programming to be dangerous! If want to learn more, see these resources:
+* Loading packages
+* 

@@ -8,13 +8,13 @@
     <meta charset='utf-8'>
 
     <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-71765736e9325004ac90f3ba4189b18d46744a6e86be3a8b78aaf43e1c825cd9.css" media="all" rel="stylesheet" />
-    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2-98e82b2c3817518c71121909913691d55d7ccd28ca0ce7f10d34fb6819fee804.css" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2-28ce55f49b9bf83400a99cd7d6b7be03ce24d4a5f2450d8c6c66903c0640eff0.css" media="all" rel="stylesheet" />
     
     
     
 
     <link as="script" href="https://assets-cdn.github.com/assets/frameworks-ee521b8e9facac68ff27e93fc3ae0f8ed811d7bf9e434e84f4b9ea227780b084.js" rel="preload" />
-    <link as="script" href="https://assets-cdn.github.com/assets/github-8b8be2146b2cf4f6889ec8c6df1a438af2b08518136ff0e268ab3cc59df6aadb.js" rel="preload" />
+    <link as="script" href="https://assets-cdn.github.com/assets/github-87989c8b64a7646d39cf00d506269c82fcb042cec6164664ccd3fcbb1c0e5e78.js" rel="preload" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
@@ -53,7 +53,7 @@
 <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
     <meta name="google-analytics" content="UA-3769691-2">
 
-<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="8CE206B1:5D3A:1290D424:56BA14F5" name="octolytics-dimension-request_id" />
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="8CE206B1:6A11:92E10:56BA29C4" name="octolytics-dimension-request_id" />
 <meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" name="analytics-location" />
 
 
@@ -70,9 +70,9 @@
       <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
       <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
 
-    <meta content="c51cf540ca78fbd550caf4ec0831a75d7882aa5f" name="form-nonce" />
+    <meta content="6adbd7a4144c186b53db3119f1e6b9c96ba1c1c8" name="form-nonce" />
 
-    <meta http-equiv="x-pjax-version" content="3d5b6a35dbfe8a2a7260378ad09b0970">
+    <meta http-equiv="x-pjax-version" content="79a72b28a4e9d0aec1bdd9b5f9c59bbc">
 
       
   <meta name="description" content="Contribute to r-for-beginners development by creating an account on GitHub.">
@@ -25675,6 +25675,7 @@ I copied the gender column and pasted as values to remove the formulas.">added g
   <div class="modal-backdrop"></div>
 </div>
 
+
     </div>
   </div>
 
@@ -25697,7 +25698,7 @@ I copied the gender column and pasted as values to remove the formulas.">added g
       <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" role="img" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
 </a>
     <ul class="site-footer-links">
-      <li>&copy; 2016 <span title="0.46557s from github-fe127-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+      <li>&copy; 2016 <span title="0.23059s from github-fe151-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
         <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
         <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
         <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
@@ -25724,7 +25725,7 @@ I copied the gender column and pasted as values to remove the formulas.">added g
 
       <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/compat-ef12e71982f00805539829712436829b02370b2e561de18ece6796130cbb9bbe.js"></script>
       <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-ee521b8e9facac68ff27e93fc3ae0f8ed811d7bf9e434e84f4b9ea227780b084.js"></script>
-      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-8b8be2146b2cf4f6889ec8c6df1a438af2b08518136ff0e268ab3cc59df6aadb.js"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-87989c8b64a7646d39cf00d506269c82fcb042cec6164664ccd3fcbb1c0e5e78.js"></script>
       
       
       
