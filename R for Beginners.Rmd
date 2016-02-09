@@ -24,18 +24,37 @@ represent below
 **Lower left**: where the code is executed  
 **Lower Right**: where to view help files, plots, and loaded files  
 
-###Open a script file
-File>NewFile>R Script
-
-###Set your working directory
-Session>Set Working Directory>Source File Location
-
-#R Syntax
-
+#Getting ready to work
 One of the hardest things about any programming is remembering the syntax. 
 Missing one semicolon or mispelling a variable or function name cause your code 
 to fail. Luckily, you can use scripts to save code that you have written, with 
 notes to indicate what the code does.
+
+###Open a script file
+Scripts let you save your code to run whenever you want. To open a new script:
+* Go to the __File__ menu
+* Select __NewFile__
+* Select __R Script__
+
+Now save the script to where you want to work. Every time you make changes to the script, the name of the script turns red, and a star appears after the name. Go to __File>Save__ to save the file. You can also use the appropriate short key (ctrl-s for PC, command-s for MacOS).  
+
+**Remember: Save early, save often!**
+
+###Set your working directory
+Since we're going to be downloading and importing files, it's important to set 
+your working directory so R knows where to look for the files. To set your 
+working directory:
+* Go to the __Session__ menu
+* Select __Set Working Directory__
+* Select __Source File Location__
+
+Now R will look where the script is located for your data files. If your script
+and your files are in a different location for some reason, you can choose a 
+different working directory by selecting __Choose Directory__, but for the 
+purposes of this tutorial, let's just keep it in the script location. 
+
+#R Syntax
+Now we'll go over some really useful function to use in R.
 
 ###Assignment operator
 One of the most basic things to do in programming is to assign a value to a 
@@ -54,14 +73,25 @@ x #print x to the output screen
 
 R outputs the number 4. 
 
-###Why not use =?
+Type __x<-4__ in your script. On the next line, type x. (Remember to save as you go!)
 
-The equal sign (=)serves a different purpose in R. Instead of assigning values 
+How do we send this code to the **Console** (lower left window) to actually run the code? There's a short key for that! 
+* Put your cursor on the line of code you'd like to run
+* Use ctrl-Enter to send that line of code to the console
+* The cursor then jumps to the next line of code
+* Repeat as necessary
+* you can also highlight a block of code
+
+
+
+###Why not use =?
+The equal sign (=) works the same as the assignment operator [in most cases](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html).
+
+It also serves a separate purpose in R. Instead of assigning values 
 to variables, it's used to define arguments to functions. We'll show you what
 this means as we start to use functions later in this tutorial.
 
-###But what about REAL data?
-
+###Loading files
 You can also use the assignment operator in conjunction with a function called 
 **read.csv** to load tabular data into R. 
 
@@ -71,17 +101,34 @@ also contains data about the gender of the subjects.
 
 ####Downloading files
 You can download the file at this address: 
-https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv
+[https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv](https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv)
 
 But why not use R to do the downloading for you? That's what the **download.file**
 function is for. 
 
+Here's the code to download a file in R.
 ```{r}
 download.file(url="https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv",
               destfile = "inflammation.csv")
 ```
+See what I mean about '=' being used for something different in R? It's used to give the __arguments__ of the function values. Arguments are information that
+
+* The __url__ argument specifies where the file is on the web
+* The __destfile__ argument specifies where you want the downloaded data to be stored. We're not including a file path, so it defaults to the working directory. You can name the fil whatever you want.
+* Make sure both the url and the destination file are in quotes. 
+
+If you're not sure what arguments a function can take, type ?<name of function>.
+This command will open the help file for the function in the lower right of the R Studio console. 
+
+For example, this is how you'd pull up the help file for __download.file__
+```{r}
+?download.file
+```
+
+It takes a while to learn how to effectively read the R help files, but don't worry. We will explain all of the functions and arguments you need in this tutorial. You shouldn't have to rely much on the help files. 
 
 ####Loading the data into R
+You've
 
 ####Data frames
 
