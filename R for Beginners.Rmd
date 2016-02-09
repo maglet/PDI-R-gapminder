@@ -125,16 +125,17 @@ also contains data about the gender of the subjects.
 
 ####Downloading files
 You can download the file at this address: 
-[https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv](https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv)
+[here](https://raw.githubusercontent.com/maglet/r-for-beginners/362063af5e1ad3ba2d3de36110fde9889057a301/inflammation.csv)
 
 But why not use R to do the downloading for you? That's what the **download.file**
 function is for. 
 
 Here's the code to download a file in R.
 ```{r}
-download.file(url="https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv",
+download.file(url="https://raw.githubusercontent.com/maglet/r-for-beginners/362063af5e1ad3ba2d3de36110fde9889057a301/inflammation.csv",
               destfile = "inflammationDL.csv")
 ```
+
 See what I mean about '=' being used for something different in R? It's used to 
 give the function's __arguments__ values. Arguments are information that is 
 necessary to run the function. In this case, we need to know where the file is online and where you want to store it locally.
