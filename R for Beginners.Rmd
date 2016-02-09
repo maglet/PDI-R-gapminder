@@ -133,7 +133,7 @@ function is for.
 Here's the code to download a file in R.
 ```{r}
 download.file(url="https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv",
-              destfile = "inflammation.csv")
+              destfile = "inflammationDL.csv")
 ```
 See what I mean about '=' being used for something different in R? It's used to 
 give the function's __arguments__ values. Arguments are information that is 
