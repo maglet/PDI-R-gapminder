@@ -4,6 +4,9 @@ author: "C. Tobin Magle"
 date: "February 8, 2016"
 output: html_document
 ---
+This material was adapted from the following Data Carpentry lesson
+http://www.datacarpentry.org/R-ecology/
+
 #Learning Objectives
 
 ## After completing this tutorial, you will be able to 
@@ -16,6 +19,16 @@ R studio makes programming in R easier. See what the different windows
 represent below
 
 **Layout Overview:** ![](Rstudio.png)
+**Upper left**: where you write your scripts  
+**Upper right**: view the variables  
+**Lower left**: where the code is executed  
+**Lower Right**: where to view help files, plots, and loaded files  
+
+###Open a script file
+File>NewFile>R Script
+
+###Set your working directory
+Session>Set Working Directory>Source File Location
 
 #R Syntax
 
@@ -30,13 +43,13 @@ variable. Let's say you want to assign the value 4 to the variable x.
 To do this in R, use the following syntax: 
 
 ```{r}
-x<-4
+x<-4 #assigns the value 4 to the variable x
 ```
 
 Now, check your work. When you type in 'x'
 
 ```{r}
-x
+x #print x to the output screen
 ```
 
 R outputs the number 4. 
@@ -44,7 +57,47 @@ R outputs the number 4.
 ###Why not use =?
 
 The equal sign (=)serves a different purpose in R. Instead of assigning values 
-to variables, it's used to define arguments to functions.
+to variables, it's used to define arguments to functions. We'll show you what
+this means as we start to use functions later in this tutorial.
 
-Let's say you have a data table in a file called 
+###But what about REAL data?
 
+You can also use the assignment operator in conjunction with a function called 
+**read.csv** to load tabular data into R. 
+
+Let's use a data table called **inflammation.csv** that contains daily 
+antibody levels for 40 days after the administration of a vaccine. The table 
+also contains data about the gender of the subjects.
+
+####Downloading files
+You can download the file at this address: 
+https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv
+
+But why not use R to do the downloading for you? That's what the **download.file**
+function is for. 
+
+```{r}
+download.file(url="https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv",
+              destfile = "inflammation.csv")
+```
+
+####Loading the data into R
+
+####Data frames
+
+head
+str
+$ operator
+Factors?
+Tables?
+dim, nrow, ncol
+head, tail
+names
+colnames, rownames
+str
+summary
+
+####Subsetting
+
+
+####Plotting data
