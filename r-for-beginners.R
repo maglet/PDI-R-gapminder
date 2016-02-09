@@ -8,5 +8,20 @@ x #print x to the output screen
 download.file(url="https://github.com/maglet/r-for-beginners/blob/master/inflammation.csv",
               destfile = "inflammation.csv")
 
+?download.file # get R documantation for download.file function
+
+#Loading data into R
+inflammation<-read.csv("inflammation.csv") #reads data from the csv file
+
+#Inspeciting the data
+class(x)                 #returns the data type of x
+class(inflammation)      #returns the data type of inflammation
+
+head(inflammation) #displays the first 6 elements of all columns
+
+View(inflammation) #opens the data frame in a new tab
+
+str(inflammation) #gives information about the data stored within the colums of inflammation
+
 
 

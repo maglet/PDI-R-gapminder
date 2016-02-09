@@ -120,7 +120,7 @@ Now we'll go over some really useful functions to use in R.
 You can also use the assignment operator to load tabular data into R. 
 
 Let's use a data table called **inflammation.csv** that contains daily 
-antibody levels for 40 days after the administration of a vaccine. The table 
+antibody levels for 30 days after the administration of a vaccine. The table 
 also contains data about the gender of the subjects.
 
 ####Downloading files
@@ -133,7 +133,7 @@ function is for.
 Here's the code to download a file in R.
 ```{r}
 download.file(url="https://raw.githubusercontent.com/maglet/r-for-beginners/362063af5e1ad3ba2d3de36110fde9889057a301/inflammation.csv",
-              destfile = "inflammationDL.csv")
+              destfile = "inflammation.csv")
 ```
 
 See what I mean about '=' being used for something different in R? It's used to 
@@ -161,22 +161,92 @@ Now that you've downloaded the data you want to work with, it's time to load it
 into R. We're going to use the assignment operator in conjuntiocn with a 
 function called **read.csv**.
 
+Below is the syntax to read the inflammation.csv file into R.
+
 ```{r}
-data<-read.csv("inflammation.csv") #reads data from the csv file
+inflammation<-read.csv("inflammation.csv") #reads data from the csv file
 ```
 
-####Data frames
+Now your global environment looks something like this: 
 
-head
-str
+~[](globalenv2.png)
+
+There's a new dataset called __inflammation__. You can call it (mostly) whatever you 
+want, but descriptive names are better. What's a better name for this dataset?
+
+###Inspecting your data
+Now, what you can do with the data set in r depends on the content and type of 
+data in __inflammation__. 
+
+To find out the format that R is storing the data in, you can use the function
+__class__. Every variable in R has a class, including the variable __x__ from 
+earlier. Let's see what class these two items are. 
+
+```{r}
+class(x)
+class(inflammation)
+```
+
+So, x is numeric, which makes sense because it's a number. 
+Inflammation is a data frame. This is a special R format that makes dealing with 
+tabular data easier.  
+
+* Each column represents a variable that is being measured in the experiment. In 
+this case, it's patient number, gender, and 30 day readings for antibody levels.
+* Each row is a separate observation. In this case, it's all of the patients in 
+the study. 
+* Each column must have data all of the same type (for example, all numeric)
+* The data set must be "rectangular", which means all variables (columns) must 
+have the same number of observations (elements).
+
+To see how the data are formatted in a data frame, you can use the 
+__head__ command. It takes one argument (the data frame).
+
+```{r}
+head(inflammation) #displays the first 6 elements of all columns
+```
+
+By default, __head__ will display the first 6 values of each column in the data frame. 
+
+If you want to see the entire data frame in a new tab, use the __View__ command. 
+
+```{r}
+View(inflammation) #opens the data frame in a new tab
+```
+
+To find out what data type is contained in each column, use the __str__ command 
+(which stands for structure) to get more information.
+
+```{r}
+str(inflammation)
+```
+
+By default, __str__ displays the dimensions of the data frame (720 observations 
+x 32 variables) and the name of each variable (ID, Gender, day1...) followed by 
+the type of data (__Factor__ or __integer__) and the first 10 elements in the 
+column. 
+
+In this dataset, each day column hold a list of integers that represent 
+antibody levels. 
+
+But what does it mean to say that X and Gender are factors? Factors are 
+categorical data that describe the observation.
+
+* _ID_ is a factor with 720 levels, the same as the number of observations. This is 
+good because X is meant to be a unique identifier for each patient. This is not 
+a very useful factor. 
+* __Gender__ is a factor with 2 levels: "M" or "F". You can use this factor to split 
+the data into male and female subgroups. We'll come back to this point later. 
+
+####Subsetting
+Especially with large data sets, 
 $ operator
-Factors?
+
+
+
+
 Tables?
-dim, nrow, ncol
-head, tail
-names
-colnames, rownames
-str
+
 summary
 
 ####Subsetting
