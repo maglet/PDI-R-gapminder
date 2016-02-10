@@ -21,7 +21,7 @@ head(inflammation) #displays the first 6 elements of all columns
 
 View(inflammation) #opens the data frame in a new tab
 
-str(inflammation) #gives information about the data stored within the colums of inflammation
+str(inflammation) #gives information about the data stored within the columns
 
-
+#Summarizing the data
 

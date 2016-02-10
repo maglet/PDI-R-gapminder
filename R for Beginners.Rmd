@@ -238,23 +238,103 @@ a very useful factor.
 * __Gender__ is a factor with 2 levels: "M" or "F". You can use this factor to split 
 the data into male and female subgroups. We'll come back to this point later. 
 
-####Subsetting
-Especially with large data sets, 
-$ operator
-
-
-
-
-Tables?
-
-summary
+```{r}
+summary(inflammation)
+```
 
 ####Subsetting
+Especially with large data sets, sometimes you need to assess a part of the data
+rather than the whole. Depending on what you want to do, you'll either want to
+work with a subset of rows or columns. Let's look at both
 
+#####Subsetting Columns
+Let's say that you're only interested in the inflammationon day 30. Use the 
+following code to extract only the day 30 data and store it in a variable called
+__30dayinflammation__
+
+* You already know about the assignment operator
+* The __$__ operator lets you subset the data fram based on column name
+* Syntax: <variable name>__$__<column name>
+
+```{r}
+day30inflammation<-inflammation$day30
+```
+
+Now you should see a new variable in your clobal environment with 720 elements. 
+
+Now let's look at the mean of this column:
+
+```{r}
+mean(day30inflammation)
+```
+
+The mean of the inflammation scores is ~5.6. 
+
+But what if you want to find the mean for all of the columns? That's where the 
+__apply__ function comes in. This function applies a function (__FUN__) to a 
+chunk of data (__X__) on either the rows or columns (__MARGIN__).
+
+Here's how you get the mean for all of the day columns:
+```{r}
+daymeans<-apply(X=inflammation[,3:32], MARGIN=2, FUN=mean)
+```
+
+* __X=inflammation[,3:32]__: grabs the 3rd to 32nd columns of the data frame
+* __MARGIN = 2__: tells apply to run the function on each column (MARGIN=1 would
+indicate rows)
+* __FUN= mean__: tells apply to run the mean function 
+
+You can get the mean for each patient as well
+
+```{r}
+ptmeans<-apply(X=inflammation[,3:32], MARGIN=1, FUN=mean)
+```
+
+#####Subsetting Rows. 
+
+But what if you only want to see values for a certain subset of patients? That's
+where the __subset__ function comes in. Suppose you want to get inflammation 
+values only for female subjects and store that subset in a variable called 
+__inflammationF__.
+
+```{r}
+inflammationF <- subset(x= inflammation, 
+                        subset = (Gender == "F"))
+```
+
+* __x = inflammation__: tells subset the data set we want to use
+* __subset = (Gender == "F")__: a boolean expression that tells subset to only 
+select observations (rows) with the value "F" in the Gender variable (column).
+* note the use of "==" in the Boolean expression. This is an example of a 
+logical operator.
+
+Let's do the same thing for male subjects
+```{r}
+inflammationM <- subset(x= inflammation, 
+                        subset = (Gender == "M"))
+```
+
+Now we can compare the data for the two groups using a t-test:
+
+```{r}
+t.test(inflammationF$day30, inflammationM$day30)
+```
 
 ####Plotting data
 
+Lastly, we're going to look at how to plot these data.
+```{r}
+barplot(height=daymeans, main="Mean inflammation over time", 
+          xlab="Days post vaccine",
+          ylab="Mean Inflammation")
+
+plot(inflammation$day15, inflammation$day30)
+
+hist(inflammation$day30)
+```
+
 #Resources
-Congrats! Now you know enough R programming to be dangerous! If want to learn more, see these resources:
+Congrats! Now you know enough R programming to be dangerous! If want to learn 
+more, see these resources:
 * Loading packages
-* 
+* swirl
