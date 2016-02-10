@@ -14,6 +14,10 @@ http://www.datacarpentry.org/R-ecology/
 * calculate summary statistics for these data
 * create a publication-quality graph
 
+#Software
+This tutorial requires R and R studio to be installed. If you don't have these 
+installed, please use [this tutorial](http://web.cs.ucla.edu/~gulzar/rstudio/).
+
 #Introducing R Studio
 R studio makes programming in R easier. See what the different windows
 represent below
@@ -364,20 +368,57 @@ t.test(inflammationF$day30, inflammationM$day30)
 ```
 
 ####Plotting data
+Lastly, we're going to look at how to plot these data. The R base graphics 
+package has many options for plotting your data. Many people prefer more 
+advanced packages, such as [ggplot2](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/), but we will stick to the base package here for 
+simplicity's sake.
 
-Lastly, we're going to look at how to plot these data.
+We'll be working with __histograms__, __bar  plots__, __box plots__, 
+__scatter plots__, and __linear regression__. 
+
+First, let's look at the distribution of values of day 30 inflammation, and 
+just for kicks, we'll make the bars blue. Make sure to label the axes!
+
+```{r}
+hist(x=inflammation$day30,    #plots inflammation at day 30 for all patients
+     main="Histogram of Inflammation level on day 30", #main title
+     xlab="Inflammation level",                        #x axis label
+     ylab="Frequency",                                 #y axis lablel
+     col="blue")                                       #color
+```
+
+This allows you to see how your data are distributed. Remember how hard it is to [make a histogram in Excel](https://support.microsoft.com/en-us/kb/214269)? That's a thing of the past for you now.
+
+Now let's look at making a bar chart of the averages for each day using our 
+variable daymeans.
+
 ```{r}
 barplot(height=daymeans, main="Mean inflammation over time", 
           xlab="Days post vaccine",
           ylab="Mean Inflammation")
+```
+You can see that the inflammation levels peak at day `r names(max(daymeans))`.
 
+but wait, where are the error bars? This requires some extra code.
+
+```{r}
+segments(x, y-sd,x, y+sd)
+epsilon = 0.02
+segments(x-epsilon,y-sd,x+epsilon,y-sd)
+segments(x-epsilon,y+sd,x+epsilon,y+sd)
+```
+
+```{r}
 plot(inflammation$day15, inflammation$day30)
-
-hist(inflammation$day30)
 ```
 
 #Resources
 Congrats! Now you know enough R programming to be dangerous! If want to learn 
 more, see these resources:
-* Loading packages
-* swirl
+*[Installing packages](http://web.cs.ucla.edu/~gulzar/rstudio/)
+*[swirl: Learn R in R](http://swirlstats.com)
+*[R base grapics: an idiot's guide](http://rstudio-pubs-static.s3.amazonaws.com/7953_4e3efd5b9415444ca065b1167862c349.html)
+*[ggplot2](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/)
+*[Elementary statistics with R](http://www.r-tutor.com/elementary-statistics)
+*[Software Carpentry](http://software-carpentry.org)
+*[Data Carpentry](http://www.datacarpentry.org)
