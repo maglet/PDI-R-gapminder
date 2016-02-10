@@ -125,14 +125,14 @@ also contains data about the gender of the subjects.
 
 ####Downloading files
 You can download the file at this address: 
-[here](https://raw.githubusercontent.com/maglet/r-for-beginners/362063af5e1ad3ba2d3de36110fde9889057a301/inflammation.csv)
+[here](https://raw.githubusercontent.com/maglet/r-for-beginners/master/inflammation.csv)
 
 But why not use R to do the downloading for you? That's what the **download.file**
 function is for. 
 
 Here's the code to download a file in R.
 ```{r}
-download.file(url="https://raw.githubusercontent.com/maglet/r-for-beginners/362063af5e1ad3ba2d3de36110fde9889057a301/inflammation.csv",
+download.file(url="https://raw.githubusercontent.com/maglet/r-for-beginners/master/inflammation.csv",
               destfile = "inflammation.csv")
 ```
 
