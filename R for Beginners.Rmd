@@ -2,7 +2,7 @@
 title: "R for Beginners"
 author: "C. Tobin Magle"
 date: "February 8, 2016"
-output: html_document
+output: pdf_document
 ---
 This material was adapted from the following Data Carpentry lesson
 http://www.datacarpentry.org/R-ecology/
@@ -323,9 +323,10 @@ But what if you want to find the mean for all of the columns? That's where the
 __apply__ function comes in. This function applies a function (__FUN__) to a 
 chunk of data (__X__) on either the rows or columns (__MARGIN__).
 
-Here's how you get the mean for all of the day columns:
+Here's how you get the mean and standard deviation for all of the day columns:
 ```{r}
 daymeans<-apply(X=inflammation[,3:32], MARGIN=2, FUN=mean)
+daysd<-apply(X=inflammation[,3:32], MARGIN=2, FUN=sd)
 ```
 
 * __X=inflammation[,3:32]__: grabs the 3rd to 32nd columns of the data frame
@@ -333,7 +334,7 @@ daymeans<-apply(X=inflammation[,3:32], MARGIN=2, FUN=mean)
 indicate rows)
 * __FUN= mean__: tells apply to run the mean function 
 
-You can get the mean for each patient as well
+You can get the mean for each patient as well by changing the __margin__.
 
 ```{r}
 ptmeans<-apply(X=inflammation[,3:32], MARGIN=1, FUN=mean)
@@ -397,24 +398,71 @@ barplot(height=daymeans, main="Mean inflammation over time",
           xlab="Days post vaccine",
           ylab="Mean Inflammation")
 ```
-You can see that the inflammation levels peak at day `r names(max(daymeans))`.
 
-but wait, where are the error bars? This requires some extra code.
+You can see that the inflammation levels peak at day `r max(daymeans)`.
 
+But wait, where are the error bars? This requires some extra code.
+
+A great way to find code is to look at R blogs. I found some code to make box 
+plots [here](http://monkeysuncle.stanford.edu/?p=485) and adapted it to our 
+purposes.
+
+Here's a function to plot the error bars. I didn't need to change anything here, 
+because we'll provide our arguments during the function call. 
 ```{r}
-segments(x, y-sd,x, y+sd)
-epsilon = 0.02
-segments(x-epsilon,y-sd,x+epsilon,y-sd)
-segments(x-epsilon,y+sd,x+epsilon,y+sd)
+error.bar <- function(x, # the bar plot
+                      y, #daily means
+                      upper, #standard deviation
+                      lower=upper, #error bars in both directions
+                      length=0.1,...) #length of the arrow head (in inches)
+{
+     if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+          stop("vectors must be same length")
+     arrows(x0=x,            #point to draw the arrow from (x)
+            y0=y+upper,      #                             (y)
+            x1=x,            #                        to (x) 
+            y1=y-lower,      #                        to (y)
+            angle=90,        #draw it at a 90 degree angle
+            code=3,          #choose type of arrow
+            length=length,   #length of the arrow head (inches)
+            ...)             #sends graphics paramenters from the function call 
+}
 ```
 
+Now I replaced their randomly generated variables with the ones that we want to 
+plot. 
+
 ```{r}
-plot(inflammation$day15, inflammation$day30)
+#This command draws the plot w/o error bars
+barx <- barplot(height=daymeans,     #height of the bars 
+                ylim=c(0,16),        #y axis range, determined by tweaking
+                col="blue",          #blue bars
+                axis.lty=1,          #choose line type (opaque) for y axis
+                xlab="Day post vaccination",                #x axis label
+                ylab="Mean inflammation (arbitrary units)") #y axis label
+
+#this function draws the error bars
+error.bar(barx, daymeans, daysd)
 ```
+
+The error is appearing because the error bar for day 1 is length zero, because
+all values on day 1 are 0. 
+
+Now let's draw a box plot, separating the data based on gender.
+```{r}
+          #Data to plot      #factor to separate on
+boxplot(inflammation$day30 ~ inflammation$Gender,
+        main="Day 30 inflammation by gender",
+        ylab="inflammation (day 30)",
+        xlab="Gender")
+```
+
+Not much of a gender difference!
 
 #Resources
 Congrats! Now you know enough R programming to be dangerous! If want to learn 
 more, see these resources:
+
 *[Installing packages](http://web.cs.ucla.edu/~gulzar/rstudio/)
 *[swirl: Learn R in R](http://swirlstats.com)
 *[R base grapics: an idiot's guide](http://rstudio-pubs-static.s3.amazonaws.com/7953_4e3efd5b9415444ca065b1167862c349.html)
