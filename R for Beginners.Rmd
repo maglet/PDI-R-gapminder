@@ -2,7 +2,7 @@
 title: "R for Beginners"
 author: "C. Tobin Magle"
 date: "February 8, 2016"
-output: pdf_document
+output: html_document
 ---
 This material was adapted from the following Data Carpentry lesson
 http://www.datacarpentry.org/R-ecology/
@@ -29,10 +29,10 @@ represent below
 **Lower Right**: where to view help files, plots, and loaded files  
 
 #Getting ready to code
-One of the hardest things about any programming language is remembering the syntax. 
-Missing one semicolon or mispelling a variable or function name cause your code 
-to fail. Luckily, you can use scripts to save code that you have written, with 
-notes to indicate what the code does.
+One of the hardest things about any programming language is remembering the 
+syntax. Missing one semicolon or mispelling a variable or function name can 
+cause your code to fail. Luckily, you can use scripts to save code that you 
+have written, with notes to indicate what the code does.
 
 ###Open a script file
 Scripts let you save your code to run whenever you want. To open a new script:   
@@ -41,7 +41,10 @@ Scripts let you save your code to run whenever you want. To open a new script:
 * Select __NewFile__  
 * Select __R Script__  
 
-Now save the script to where you want to work. Every time you make changes to the script, the name of the script turns red, and a star appears after the name. Go to __File>Save__ to save the file. You can also use the appropriate short key (__ctrl-s__ for PC, __command-s__ for MacOS).  
+Now save the script to where you want to work. Every time you make changes to 
+the script, the name of the script turns red, and a star appears after the name. 
+Go to __File>Save__ to save the file. You can also use the appropriate short key 
+(__ctrl-s__ for PC, __command-s__ for MacOS).  
 
 **Remember: Save early, save often!**
 
@@ -61,9 +64,12 @@ purposes of this tutorial, let's just keep it in the script location.
 
 
 #Operators
-Operaters are used to perform mathematical and logical operations. But more simply, they allow you to assign values to variables and combind/compare their values. 
+Operaters are used to perform mathematical and logical operations. But more 
+simply, they allow you to assign values to variables and combine/compare their 
+values. 
 
-Operators can be broken into 4 catergories: __assignment__, __logical__, __arithmetic__, __relational__
+Operators can be broken into 4 categories: __assignment__, __logical__, 
+__arithmetic__, __relational__.
 
 You can find a more thorough discussion of these operators [here](http://www.programiz.com/r-programming/operator), but for now we'll focus on assignment operators.
 
@@ -463,10 +469,10 @@ Not much of a gender difference!
 Congrats! Now you know enough R programming to be dangerous! If want to learn 
 more, see these resources:
 
-*[Installing packages](http://web.cs.ucla.edu/~gulzar/rstudio/)
-*[swirl: Learn R in R](http://swirlstats.com)
-*[R base grapics: an idiot's guide](http://rstudio-pubs-static.s3.amazonaws.com/7953_4e3efd5b9415444ca065b1167862c349.html)
-*[ggplot2](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/)
-*[Elementary statistics with R](http://www.r-tutor.com/elementary-statistics)
-*[Software Carpentry](http://software-carpentry.org)
-*[Data Carpentry](http://www.datacarpentry.org)
+* [Installing packages](http://web.cs.ucla.edu/~gulzar/rstudio/)
+* [swirl: Learn R in R](http://swirlstats.com)
+* [R base grapics: an idiot's guide](http://rstudio-pubs-static.s3.amazonaws.com/7953_4e3efd5b9415444ca065b1167862c349.html)
+* [ggplot2](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/)
+* [Elementary statistics with R](http://www.r-tutor.com/elementary-statistics)
+* [Software Carpentry](http://software-carpentry.org)
+* [Data Carpentry](http://www.datacarpentry.org)
