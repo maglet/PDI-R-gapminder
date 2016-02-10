@@ -18,7 +18,7 @@ http://www.datacarpentry.org/R-ecology/
 R studio makes programming in R easier. See what the different windows
 represent below
 
-**Layout Overview:** ![](Rstudio.png)
+![](Rstudio.png)
 **Upper left**: where you write your scripts  
 **Upper right**: view the variables  
 **Lower left**: where the code is executed  
@@ -55,6 +55,7 @@ and your files are in a different location for some reason, you can choose a
 different working directory by selecting __Choose Directory__, but for the 
 purposes of this tutorial, let's just keep it in the script location. 
 
+
 #Operators
 Operaters are used to perform mathematical and logical operations. But more simply, they allow you to assign values to variables and combind/compare their values. 
 
@@ -80,11 +81,13 @@ x #print x to the output screen
 R outputs the number 4. 
 
 How do we send this code to the **Console** (lower left window) to actually run the code? There's a short key for that! 
+
 * Put your cursor on the line of code you'd like to run
 * Use ctrl-Enter to send that line of code to the console
 * The cursor then jumps to the next line of code
 * Repeat as necessary
-* you can also highlight a block of code
+* you can also highlight a block of code, and use ctrl-Enter to send it to the 
+console at once.
 
 Your __Console__ should look like this now (lower left window)  
 
@@ -103,6 +106,21 @@ this means as we start to use functions later in this tutorial.
 
 So, it's a matter of preference. This tutorial will use <- for clarity.
 
+###Using comments. 
+
+As you write your code, it's a great idea to document it in human-readable 
+language. Any text after the '#' symbol will not be executed. Let's 
+try it.
+
+```{r}
+y<-"This is not in a comment" #This line will print to the console
+#y<-"This is in a comment"     This one will not
+y                             #prints y to the console
+```
+
+The system only prints out the value that was assigned in the un commented code. 
+Use comments to take notes about what the code does. 
+
 #Functions
 Functions are discete units of R code that allow you to perform specific tasks. 
 You can find functions:
@@ -117,7 +135,7 @@ We'll be using functions from the base package in this tutorial.
 Now we'll go over some really useful functions to use in R.
 
 ###Loading files
-You can also use the assignment operator to load tabular data into R. 
+You can use the assignment operator to load tabular data into R. 
 
 Let's use a data table called **inflammation.csv** that contains daily 
 antibody levels for 30 days after the administration of a vaccine. The table 
@@ -137,14 +155,17 @@ download.file(url="https://raw.githubusercontent.com/maglet/r-for-beginners/mast
 ```
 
 See what I mean about '=' being used for something different in R? It's used to 
-give the function's __arguments__ values. Arguments are information that is 
-necessary to run the function. In this case, we need to know where the file is online and where you want to store it locally.
+give the function's __arguments__ values. Arguments are information that the 
+function needs to run. In this case, we need to know where the file is online 
+and where you want to store it locally.
 
 * The __url__ argument specifies where the file is on the web
-* The __destfile__ argument specifies where you want the downloaded data to be stored. We're not including a file path, so it defaults to the working directory. You can name the fil whatever you want.
+* The __destfile__ argument specifies where you want the downloaded data to be 
+stored. If you don't include a file path, the function saves the file in the 
+working directory.
 * Make sure both the url and the destination file are in quotes. 
 
-If you're not sure what arguments a function can take, type ?<name of function>.
+If you're not sure what arguments a function can take, type "?FunctionName".
 This command will open the help file for the function in the lower right of the 
 R Studio console. 
 
@@ -157,11 +178,10 @@ For example, this is how you'd pull up the help file for __download.file__
 It takes a while to learn how to effectively read the R help files, but don't worry. We will explain all of the functions and arguments you need in this tutorial. You shouldn't have to rely much on the help files. 
 
 ####Loading the data into R
-Now that you've downloaded the data you want to work with, it's time to load it 
-into R. We're going to use the assignment operator in conjuntiocn with a 
-function called **read.csv**.
+Now that you've downloaded the data you, you can load it into R. We're going to 
+use the assignment operator and the **read.csv** function.
 
-Below is the syntax to read the inflammation.csv file into R.
+Below is the syntax to read the __inflammation.csv__ file into R.
 
 ```{r}
 inflammation<-read.csv("inflammation.csv") #reads data from the csv file
@@ -169,30 +189,32 @@ inflammation<-read.csv("inflammation.csv") #reads data from the csv file
 
 Now your global environment looks something like this: 
 
-~[](globalenv2.png)
+![](globalenv2.png)
 
-There's a new dataset called __inflammation__. You can call it (mostly) whatever you 
-want, but descriptive names are better. What's a better name for this dataset?
+There's a new dataset called __inflammation__. Descriptive variable names are 
+good.
 
 ###Inspecting your data
-Now, what you can do with the data set in r depends on the content and type of 
+What you can do with the data set in r depends on the content and type of 
 data in __inflammation__. 
 
 To find out the format that R is storing the data in, you can use the function
-__class__. Every variable in R has a class, including the variable __x__ from 
-earlier. Let's see what class these two items are. 
+__class__. Every variable in R has a class, including the variables __x__ and 
+__y__ from earlier. Let's see what class these two items are. 
 
 ```{r}
 class(x)
+class(y)
 class(inflammation)
 ```
 
-So, x is numeric, which makes sense because it's a number. 
+__x__ is numeric; __y__ is character, as expected. 
+
 Inflammation is a data frame. This is a special R format that makes dealing with 
 tabular data easier.  
 
 * Each column represents a variable that is being measured in the experiment. In 
-this case, it's patient number, gender, and 30 day readings for antibody levels.
+this case, it's patient id, gender, and 30 days of antibody levels.
 * Each row is a separate observation. In this case, it's all of the patients in 
 the study. 
 * Each column must have data all of the same type (for example, all numeric)
@@ -229,46 +251,69 @@ column.
 In this dataset, each day column hold a list of integers that represent 
 antibody levels. 
 
-But what does it mean to say that X and Gender are factors? Factors are 
+But what does it mean to say that X and Gender are factors? __Factors__ are 
 categorical data that describe the observation.
 
-* _ID_ is a factor with 720 levels, the same as the number of observations. This is 
-good because X is meant to be a unique identifier for each patient. This is not 
-a very useful factor. 
-* __Gender__ is a factor with 2 levels: "M" or "F". You can use this factor to split 
-the data into male and female subgroups. We'll come back to this point later. 
+* _ID_ is a factor with 720 levels, the same as the number of observations. This 
+is good because X is meant to be a unique identifier for each patient. This is 
+not a very useful factor though, because you can't group the data by this 
+variable. 
+* __Gender__ is a factor with 2 levels: "M" or "F". You can use this factor to 
+split the data into male and female subgroups. We'll come back to this point 
+later. 
 
+Finally, to get the min, max, median, mean, and quartiles for the numerica data,
+and the counts for the factor variables, you can use the __summary__ command. 
 ```{r}
 summary(inflammation)
 ```
 
 ####Subsetting
-Especially with large data sets, sometimes you need to assess a part of the data
-rather than the whole. Depending on what you want to do, you'll either want to
-work with a subset of rows or columns. Let's look at both
+Especially with large data sets, sometimes you need to assess a particular part 
+of the data. Depending on what you want to do, you'll either want to work with 
+a subset of rows or columns. We'll look at how to subset by both. 
 
 #####Subsetting Columns
 Let's say that you're only interested in the inflammationon day 30. Use the 
 following code to extract only the day 30 data and store it in a variable called
 __30dayinflammation__
 
-* You already know about the assignment operator
-* The __$__ operator lets you subset the data fram based on column name
-* Syntax: <variable name>__$__<column name>
-
 ```{r}
 day30inflammation<-inflammation$day30
 ```
 
-Now you should see a new variable in your clobal environment with 720 elements. 
+* You already know about the assignment operator
+* The __$__ operator lets you subset the data fram based on column name
+* Syntax: (variable name)__$__(column name)
 
-Now let's look at the mean of this column:
+Now you should see a new variable called __30dayinflammation__  with 720 
+elements in your global environment. 
+
+You can get the same subset using the row,column format:
+```{r}
+day30inflammation2<-inflammation[,32]
+```
+
+* __Syntax__: the row you want and the column you want, in brackets, separated 
+by a comma
+* Leaving either field blank, as in the case of rows here, will select ALL rows
+* the day 30 data are stored in column 32 of the data frame.
+
+Prove to yourself that these data sets are equal using a __Boolean operator__ 
+"==". Make sure to use the double equal sign when you're evaluating whether 
+2 values are equivalent. A single "=" will try to perform an assignment operation.
+
+```{r}
+day30inflammation == day30inflammation2
+```
+
+It checks out for all elements!
+
+Now let's calculate the mean of this column:
 
 ```{r}
 mean(day30inflammation)
 ```
-
-The mean of the inflammation scores is ~5.6. 
 
 But what if you want to find the mean for all of the columns? That's where the 
 __apply__ function comes in. This function applies a function (__FUN__) to a 
@@ -305,8 +350,6 @@ inflammationF <- subset(x= inflammation,
 * __x = inflammation__: tells subset the data set we want to use
 * __subset = (Gender == "F")__: a boolean expression that tells subset to only 
 select observations (rows) with the value "F" in the Gender variable (column).
-* note the use of "==" in the Boolean expression. This is an example of a 
-logical operator.
 
 Let's do the same thing for male subjects
 ```{r}
