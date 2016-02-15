@@ -2,7 +2,7 @@
 title: "R for Beginners"
 author: "C. Tobin Magle"
 date: "February 8, 2016"
-output: html_document
+output: pdf_document
 ---
 This material was adapted from the following Data Carpentry lesson
 http://www.datacarpentry.org/R-ecology/
@@ -19,20 +19,11 @@ This tutorial requires R and R studio to be installed. If you don't have these
 installed, please use [this tutorial](http://web.cs.ucla.edu/~gulzar/rstudio/).
 
 #Introducing R Studio
-R studio makes programming in R easier. See what the different windows
-represent below
-
-![](Rstudio.png)
-**Upper left**: where you write your scripts  
-**Upper right**: view the variables  
-**Lower left**: where the code is executed  
-**Lower Right**: where to view help files, plots, and loaded files  
-
-#Getting ready to code
-One of the hardest things about any programming language is remembering the 
-syntax. Missing one semicolon or mispelling a variable or function name can 
-cause your code to fail. Luckily, you can use scripts to save code that you 
-have written, with notes to indicate what the code does.
+R studio makes programming in R easier. One of the hardest things about any 
+programming language is remembering the syntax. Missing one semicolon or 
+mispelling a variable or function name can cause your code to fail. Luckily, you
+can use scripts to save code that you have written, with notes to indicate what 
+the code does.
 
 ###Open a script file
 Scripts let you save your code to run whenever you want. To open a new script:   
@@ -48,6 +39,14 @@ Go to __File>Save__ to save the file. You can also use the appropriate short key
 
 **Remember: Save early, save often!**
 
+See what the different windows represent below.
+
+![](Rstudio.png)
+**Upper left**: Editer- where you write your scripts  
+**Upper right**: Environment- view the variables defined in your environment
+**Lower left**: Console- where the code is executed  
+**Lower Right**: Help: where to view help files, plots, and loaded files  
+
 ###Set your working directory
 Since we're going to be downloading and importing files, it's important to set 
 your working directory so R knows where to look for the files. To set your 
@@ -62,7 +61,6 @@ and your files are in a different location for some reason, you can choose a
 different working directory by selecting __Choose Directory__, but for the 
 purposes of this tutorial, let's just keep it in the script location. 
 
-
 #Operators
 Operaters are used to perform mathematical and logical operations. But more 
 simply, they allow you to assign values to variables and combine/compare their 
@@ -76,7 +74,7 @@ You can find a more thorough discussion of these operators [here](http://www.pro
 ###Assignment operator
 One of the most basic things to do in programming is to assign a value to a 
 variable. Let's say you want to assign the value 4 to the variable x. 
-To do this in R, use the following syntax: 
+To do this in R, type the following into your script file: 
 
 ```{r}
 x<-4 #assigns the value 4 to the variable x
@@ -181,7 +179,7 @@ R Studio console.
 
 For example, this is how you'd pull up the help file for __download.file__
 ```{r}
-?download.file # get R documantation for download.file function
+?download.file # get R documentation for download.file function
 ```
 ![](downloadfilehelp.png)
 
@@ -240,11 +238,12 @@ head(inflammation) #displays the first 6 elements of all columns
 
 By default, __head__ will display the first 6 values of each column in the data frame. 
 
-If you want to see the entire data frame in a new tab, use the __View__ command. 
+If you want to see the entire data frame in a new tab, click on the name of the
+variable in the __Environment__ window. A spreadsheet will open as a new tab in 
+the editor (upper left). 
 
-```{r}
-View(inflammation) #opens the data frame in a new tab
-```
+![](view.png)  
+
 
 To find out what data type is contained in each column, use the __str__ command 
 (which stands for structure) to get more information.
@@ -261,12 +260,12 @@ column.
 In this dataset, each day column hold a list of integers that represent 
 antibody levels. 
 
-But what does it mean to say that X and Gender are factors? __Factors__ are 
-categorical data that describe the observation.
+But what does it mean to say that __id__ and __Gender__ are factors? __Factors__ 
+are categorical data that describe the observation.
 
-* _ID_ is a factor with 720 levels, the same as the number of observations. This 
-is good because X is meant to be a unique identifier for each patient. This is 
-not a very useful factor though, because you can't group the data by this 
+* _id_ is a factor with 720 levels, the same as the number of observations. This 
+is good because __id__ is meant to be a unique identifier for each patient. This 
+is not a very useful factor though, because you can't group the data by this 
 variable. 
 * __Gender__ is a factor with 2 levels: "M" or "F". You can use this factor to 
 split the data into male and female subgroups. We'll come back to this point 
@@ -284,7 +283,7 @@ of the data. Depending on what you want to do, you'll either want to work with
 a subset of rows or columns. We'll look at how to subset by both. 
 
 #####Subsetting Columns
-Let's say that you're only interested in the inflammationon day 30. Use the 
+Let's say that you're only interested in the inflammation on day 30. Use the 
 following code to extract only the day 30 data and store it in a variable called
 __30dayinflammation__
 
@@ -299,7 +298,7 @@ day30inflammation<-inflammation$day30
 Now you should see a new variable called __30dayinflammation__  with 720 
 elements in your global environment. 
 
-You can get the same subset using the row,column format:
+You can get the same subset using the \[row,column\] format:
 ```{r}
 day30inflammation2<-inflammation[,32]
 ```
@@ -390,7 +389,7 @@ just for kicks, we'll make the bars blue. Make sure to label the axes!
 hist(x=inflammation$day30,    #plots inflammation at day 30 for all patients
      main="Histogram of Inflammation level on day 30", #main title
      xlab="Inflammation level",                        #x axis label
-     ylab="Frequency",                                 #y axis lablel
+     ylab="Frequency",                                 #y axis label
      col="blue")                                       #color
 ```
 
@@ -435,8 +434,12 @@ error.bar <- function(x, # the bar plot
 }
 ```
 
+Now there is a function called __error.bar__ in your environment. 
+
+![](errorbarfunction.png)
+
 Now I replaced their randomly generated variables with the ones that we want to 
-plot. 
+plot in the function call. 
 
 ```{r}
 #This command draws the plot w/o error bars
