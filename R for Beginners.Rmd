@@ -2,10 +2,13 @@
 title: "R for Beginners"
 author: "C. Tobin Magle"
 date: "February 8, 2016"
-output: pdf_document
+output: word_document
+geometry: margin=0.5in
+fontsize: 12pt
 ---
 This material was adapted from [Data Carpentry](http://www.datacarpentry.org/R-ecology/)
-and [Software Carpentry](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) lessons.
+and [Software Carpentry](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) lessons. This document and associated script can be found at
+[https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
 
 #Learning Objectives
 
