@@ -6,8 +6,7 @@ output: word_document
 geometry: margin=0.5in
 fontsize: 12pt
 ---
-This material was adapted from [Data Carpentry](http://www.datacarpentry.org/R-ecology/)
-and [Software Carpentry](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) lessons. This document and associated script can be found at
+This material was adapted from the [Software Carpentry] [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")lessons. This document and associated script can be found at
 [https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
 
 #Learning Objectives
@@ -27,6 +26,11 @@ programming language is remembering the syntax. Missing one semicolon or
 mispelling a variable or function name can cause your code to fail. Luckily, you
 can use scripts to save code that you have written, with notes to indicate what 
 the code does.
+
+###Set up your workspace
+R studio has a "project" functionality that allows users to save settings and organize their work. To create an R project:
+* Go to the __File__ menu  
+* Select __New Project__ 
 
 ###Open a script file
 Scripts let you save your code to run whenever you want. To open a new script:   
