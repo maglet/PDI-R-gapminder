@@ -6,8 +6,7 @@ output: word_document
 geometry: margin=0.5in
 fontsize: 12pt
 ---
-This material was adapted from [Data Carpentry](http://www.datacarpentry.org/R-ecology/)
-and [Software Carpentry](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) lessons. This document and associated script can be found at
+This material was adapted from the [Software Carpentry] [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")lessons. This document and associated script can be found at
 [https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
 
 #Learning Objectives
@@ -28,6 +27,26 @@ mispelling a variable or function name can cause your code to fail. Luckily, you
 can use scripts to save code that you have written, with notes to indicate what 
 the code does.
 
+###Set up your workspace
+R studio has a "project" functionality that allows users to save settings and organize their work. To create an R project:
+* Go to the __File__ menu  
+* Select __New Project__ 
+
+This action creates a popup window where you have to make some choices. Since we're starting from scratch, select __New Directory__
+
+![](Supplemental/newdirectory.png)
+
+Then since we're writing scripts for personal use, select empty project.
+
+![](Supplemental/EmptyProject.png)
+
+Finally, we have to decide where to put our project and what to call it
+* Call it __r-for-beginners_
+* Select __Desktop__ as the location
+* Check the box for Create a git repository. Git is a version control system, which allows you to keep track of all your changes and back your work up to the cloud if you wish. 
+
+![](Supplemental/name-location-git.png)
+
 ###Open a script file
 Scripts let you save your code to run whenever you want. To open a new script:   
 
@@ -35,7 +54,7 @@ Scripts let you save your code to run whenever you want. To open a new script:
 * Select __New File__  
 * Select __R Script__  
 
-Now save the script to where you want to work. Every time you make changes to 
+Now save the script to in the project directory. Every time you make changes to 
 the script, the name of the script turns red, and a star appears after the name. 
 Go to __File>Save__ to save the file. You can also use the appropriate short key 
 (__ctrl-s__ for PC, __command-s__ for MacOS).  
