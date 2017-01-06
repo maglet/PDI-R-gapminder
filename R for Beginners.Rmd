@@ -154,15 +154,14 @@ also contains data about the gender of the subjects.
 
 ####Downloading files
 You can download the file at this address: 
-[here](https://raw.githubusercontent.com/maglet/r-for-beginners/master/inflammation.csv)
+[here]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 
 But why not use R to do the downloading for you? That's what the **download.file**
 function is for. 
 
 Here's the code to download a file in R.
 ```{r}
-download.file(url="https://raw.githubusercontent.com/maglet/r-for-beginners/master/inflammation.csv",
-              destfile = "inflammation.csv")
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 ```
 
 See what I mean about '=' being used for something different in R? It's used to 
@@ -195,7 +194,7 @@ use the assignment operator and the **read.csv** function.
 Below is the syntax to read the __inflammation.csv__ file into R.
 
 ```{r}
-inflammation<-read.csv("inflammation.csv") #reads data from the csv file
+gapminder <- read.csv("data/gapminder-FiveYearData.csv") #reads data from the csv file
 ```
 
 Now your global environment looks something like this: 
