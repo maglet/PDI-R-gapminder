@@ -1,8 +1,8 @@
 ---
 title: "R for Beginners"
 author: "C. Tobin Magle"
-date: "February 8, 2016"
-output: word_document
+date: "Jan 11, 2017"
+output: html_document
 geometry: margin=0.5in
 fontsize: 12pt
 ---
@@ -63,25 +63,11 @@ Go to __File>Save__ to save the file. You can also use the appropriate short key
 
 See what the different windows represent below.
 
-![](Rstudio.png)
+![](Supplemental/Rstudio.png)
 **Upper left**: Editer- where you write your scripts  
 **Upper right**: Environment- view the variables defined in your environment  
 **Lower left**: Console- where the code is executed  
 **Lower Right**: Help: where to view help files, plots, and loaded files  
-
-###Set your working directory
-Because we're going to be downloading and importing files, it's important to set 
-your working directory so R knows where to look for the files. To set your 
-working directory:
-
-* Go to the __Session__ menu
-* Select __Set Working Directory__
-* Select __Source File Location__
-
-Now R will look where the script is located for your data files. If your script
-and your files are in a different location for some reason, you can choose a 
-different working directory by selecting __Choose Directory__, but for the 
-purposes of this tutorial, let's just keep it in the script location. 
 
 #Operators
 Operaters are used to perform mathematical and logical operations. But more 
@@ -91,24 +77,19 @@ values.
 Operators can be broken into 4 categories: __assignment__, __logical__, 
 __arithmetic__, __relational__.
 
-You can find a more thorough discussion of these operators [here](http://www.programiz.com/r-programming/operator), but for now we'll focus on assignment operators.
+You can find a more thorough discussion of these operators [here](http://www.programiz.com/r-programming/operator). Here are some examples of each operator.
 
-###Assignment operator
+###Assignment operators
 One of the most basic things to do in programming is to assign a __value__ to a 
 __variable__. Let's say you want to assign the value 4 to the variable x. 
 To do this in R, type the following into your script file: 
 
 ```{r}
 x<-4 #assigns the value 4 to the variable x
+y<-8 #assigns the value 8 to the variable y
 ```
 
-Now, check your work. When you type in 'x'
-
-```{r}
-x #print x to the output screen
-```
-
-R outputs the number 4. 
+So now, when you type in 'x' R outputs the number 4 and 8 for y. 
 
 How do we send this code to the **Console** (lower left window) to actually run the code? There's a short key for that! 
 
@@ -121,11 +102,11 @@ console at once.
 
 Your __Console__ should look like this now (lower left window)  
 
-![](sendtoconsole1.png)
+![](Supplemental/sendtoconsole1.png)
 
-Also, you should see the variable x in your __Global Environment__ (upper right window)  
+Also, you should see the variables x and y in your __Global Environment__ (upper right window)  
 
-![](globalenv1.png)
+![](Supplemental/globalenv1.png)
 
 ###Why not use =?
 The equal sign (=) works the same as the assignment operator [in most cases](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html).
@@ -151,6 +132,56 @@ y                             #prints y to the console
 The system only prints out the value that was assigned in the un commented code. 
 Use comments to take notes about what the code does. 
 
+###Arithmetic Operators
+These operators let you do math in r. They are fairly intuitive. For example, if you want to add x and y:
+
+```r{}
+x + y
+```
+
+And you get the answer 12. Similarly, you can subtract, multiply, divide, use exponents, do integer division, or get the remainder of division.
+
+```r{}
+x-y
+x*y
+x/y
+x^2
+y%/%x
+y%%x
+```
+
+###Relational Operators
+R can also compare values using relational operators. Say you want to know whether one value is bigger than another:
+
+```r{}
+x>y
+(x+y/x) > (x+y/y)
+```
+
+And R tells you whether that's true or false. You can also evaluate less than, less than or equal to, greater than or equal to, equal to or not equal to
+
+```r{}
+x < y
+x <= y
+x >= y
+x == y
+x != y
+```
+
+###Logical Operators
+You can also use logical operators to string relational operators together. For example, let's say you want to evaluate whether more than one thing is true at a time. like whether x is greater than y and less than z.
+
+```r{}
+z<-45 #creating a Z
+(x>y) & (x<z) #AND operator: Both must be true to get a true result
+```
+
+Other logical operators inclue
+```r{}
+(x>y) | (x<z) #OR operator: one must be true
+!(x>y) | (x<z) #NOT operator: returns the opposite of above
+```
+
 #Functions
 Functions are discete units of R code that allow you to perform specific tasks. 
 You can find functions:
@@ -167,20 +198,20 @@ Now we'll go over some really useful functions to use in R.
 ###Loading files
 You can use the assignment operator to load tabular data into R. 
 
-Let's use a data table called **inflammation.csv** that contains daily 
+Let's use a data table called **gapminder.csv** that contains daily 
 antibody levels for 30 days after the administration of a vaccine. The table 
 also contains data about the gender of the subjects.
 
 ####Downloading files
 You can download the file at this address: 
-[here]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
+[here]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
 
 But why not use R to do the downloading for you? That's what the **download.file**
 function is for. 
 
 Here's the code to download a file in R.
 ```{r}
-download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "gapminder.csv", method="auto")
 ```
 
 See what I mean about '=' being used for something different in R? It's used to 
@@ -202,7 +233,7 @@ For example, this is how you'd pull up the help file for __download.file__
 ```{r}
 help(download.file) # get R documentation for download.file function
 ```
-![](downloadfilehelp.png)
+![](Supplemental/downloadfilehelp.png)
 
 It takes a while to learn how to effectively read the R help files, but don't worry. We will explain all of the functions and arguments you need in this tutorial. You shouldn't have to rely much on the help files. 
 
@@ -210,22 +241,22 @@ It takes a while to learn how to effectively read the R help files, but don't wo
 Now that you've downloaded the data you, you can load it into R. We're going to 
 use the assignment operator and the **read.csv** function.
 
-Below is the syntax to read the __inflammation.csv__ file into R.
+Below is the syntax to read the __gapminder.csv__ file into R.
 
 ```{r}
-gapminder <- read.csv("data/gapminder-FiveYearData.csv") #reads data from the csv file
+gapminder <- read.csv("gapminder.csv") #reads data from the csv file
 ```
 
 Now your global environment looks something like this: 
 
-![](globalenv2.png)
+![](Supplemental/globalenv2.png)
 
-There's a new dataset called __inflammation__. Descriptive variable names are 
+There's a new dataset called __gapminder__. Descriptive variable names are 
 good.
 
 ###Inspecting your data
 What you can do with the data set in r depends on the content and type of 
-data in __inflammation__. 
+data in __gapminder__. 
 
 To find out the format that R is storing the data in, you can use the function
 __class__. Every variable in R has a class, including the variables __x__ and 
@@ -234,12 +265,12 @@ __y__ from earlier. Let's see what class these two items are.
 ```{r}
 class(x)
 class(y)
-class(inflammation)
+class(gapminder)
 ```
 
 __x__ is numeric; __y__ is character, as expected. 
 
-Inflammation is a __data frame__. This is a special R format that makes dealing 
+gapminder is a __data frame__. This is a special R format that makes dealing 
 with tabular data easier.  
 
 * __Each column is a variable__. In this case, it's patient id, gender, and 30 
@@ -254,7 +285,7 @@ To see how the data are formatted in a data frame, you can use the
 __head__ command. It takes one argument (the data frame).
 
 ```{r}
-head(inflammation) #displays the first 6 elements of all columns
+head(gapminder) #displays the first 6 elements of all columns
 ```
 
 By default, __head__ will display the first 6 values of each column in the data frame. 
@@ -263,14 +294,14 @@ If you want to see the entire data frame in a new tab, click on the name of the
 variable in the __Environment__ window. A spreadsheet will open as a new tab in 
 the editor (upper left). 
 
-![](view.png)  
+![](Supplemental/view.png)  
 
 
 To find out what data type is contained in each column, use the __str__ command 
 (which stands for structure) to get more information.
 
 ```{r}
-str(inflammation)
+str(gapminder)
 ```
 
 By default, __str__ displays the dimensions of the data frame (720 observations 
@@ -295,7 +326,7 @@ later.
 Finally, to get the min, max, median, mean, and quartiles for the numerica data,
 and the counts for the factor variables, you can use the __summary__ command. 
 ```{r}
-summary(inflammation)
+summary(gapminder)
 ```
 
 ####Subsetting
@@ -304,39 +335,39 @@ of the data. Depending on what you want to do, you'll either want to work with
 a subset of rows or columns. We'll look at how to subset by both. 
 
 #####Subsetting Columns
-Let's say that you're only interested in the inflammation on day 30. Use the 
-following code to extract only the day 30 data and store it in a variable called
-__day30inflammation__
+Let's say that you're only interested in the population data. Use the 
+following code to extract only the population data and store it in a variable called
+__pop__
 
 ```{r}
-day30inflammation<-inflammation$day30
+pop<-gapminder$pop
 ```
 
 * You already know about the assignment operator (<-)
 * The __$__ operator lets you subset the data fram based on column name
 * __Syntax__: (variable name)__$__(column name)
 
-Now you should see a new variable called __30dayinflammation__  with 720 
+Now you should see a new variable called __pop__  with 720 
 elements in your global environment. 
 
 You can get the same subset using the "[row,column]" format:
 ```{r}
-day30inflammation2<-inflammation[,32]
+pop2<-gapminder[,3]
 ```
 
 * __Syntax__: the row you want and the column you want, in brackets, separated 
 by a comma
 * Leaving either field blank, will select ALL elements, in this case all rows
-* the day 30 data are stored in column 32 of the data frame.
+* the population data are stored in column 32 of the data frame.
 
 Prove to yourself that these data sets are equal using a __Boolean operator__ 
 "==". Make sure to use the double equal sign when you're evaluating whether 
 2 values are equivalent. A single "=" will try to perform an assignment operation.
 
-Running __day30inflammation == day30inflammation2__ would give you  so we'll 
+Running __pop == pop2__ would give you  so we'll 
 
 ```{r}
-day30inflammation == day30inflammation2
+pop == pop2
 ```
 
 The above code returns a list of TRUE/FALSE values that indicate whether the values in each postition of the list match. Scanning through that list could get tedious,
@@ -346,7 +377,7 @@ the sum of that list of __TRUE__ s and __FALSE__ s would be equal to the number 
 rows.
 
 ```{r}
-nrow(inflammation)==sum(day30inflammation == day30inflammation2)
+nrow(gapminder)==sum(pop == pop2)
 ```
 
 It checks out! And now you only have to look at one result.
@@ -354,25 +385,25 @@ It checks out! And now you only have to look at one result.
 Now let's calculate the mean of this column:
 
 ```{r}
-mean(day30inflammation)
+mean(pop)
 ```
 
-But what if you want to find the mean for all of the columns? That's where the 
+But what if you want to find the mean for all of the numeric columns? That's where the 
 __apply__ function comes in. This function applies a function (__FUN__) to a 
 chunk of data (__X__) on either the rows or columns (__MARGIN__).
 
 Here's how you get the mean and standard deviation for all of the day columns:
 ```{r}
-daymeans<-apply(X=inflammation[,3:32],  #the data you want to use
+colmeans<-apply(X=gapminder[,c(3,5,6)],  #the data you want to use
                 MARGIN=2,               #apply the function to the columns
                 FUN=mean)               #take the mean of the values
 
-daysd<-apply(X=inflammation[,3:32],     #the data you want to use
+colsds<-apply(X=gapminder[,c(3,5,6)],     #the data you want to use
              MARGIN=2,                  #apply the function to the colummns
              FUN=sd)                    #take the standard deviation of the columns
 ```
 
-* __X=inflammation[,3:32]__: grabs the 3rd to 32nd columns of the data frame
+* __X=gapminder[,c(3,5,6)]__: grabs the 3rd to 32nd columns of the data frame
 * __MARGIN = 2__: tells apply to run the function on each column (MARGIN=1 would
 indicate rows)
 * __FUN= mean__: tells apply to run the mean function 
@@ -380,40 +411,40 @@ indicate rows)
 You can get the mean for each patient as well by changing the __margin__.
 
 ```{r}
-ptmeans<-apply(X=inflammation[,3:32],    #the data you want to use
+rowmeans<-apply(X=gapminder[,c(3,5,6)],    #the data you want to use
                MARGIN=1,                 #apply the function to rows
                FUN=mean)                 #take the mean of the rows
 ```
 
 #####Subsetting Rows. 
 
-But what if you only want to see values for a certain subset of patients? That's
-where the __subset__ function comes in. Suppose you want to get inflammation 
-values only for female subjects and store that subset in a variable called 
-__inflammationF__.
+But what if you only want to see values for a certain subset countries? That's
+where the __subset__ function comes in. Suppose you want to get population 
+values only for African countries and store that subset in a variable called 
+__AfricaPop__.
 
 ```{r}
-inflammationF <- subset(x= inflammation,            #the data frame to subset
-                        subset = (Gender == "F"))   #the factor to subset on
+AfricaPop <- subset(x= gapminder,            #the data frame to subset
+                        subset = (continent == "Africa"))   #the factor to subset on
 ```
 
-* __x = inflammation__: tells subset the data set we want to use
-* __subset = (Gender == "F")__: a boolean expression that tells subset to only 
-select observations (rows) with the value "F" in the Gender variable (column).
+* __x = gapminder__: tells subset the data set we want to use
+* __subset = (continent == "Africa")__: a boolean expression that tells subset to only 
+select observations (rows) with the value "Africa" in the continent variable (column).
 
-Let's do the same thing for male subjects
+Let's do the same thing for Asian countries
 ```{r}
-inflammationM <- subset(x= inflammation,            #the data frame to subset
-                        subset = (Gender == "M"))   #the factor to subset on
+AsiaPop <- subset(x= gapminder,            #the data frame to subset
+                        subset = (continent == "Asia"))   #the factor to subset on
 ```
 
 Now we can compare the data for the two groups using a t-test:
 
 ```{r}
-t.test(inflammationF$day30, inflammationM$day30)
+t.test(AfricaPop$pop, AsiaPop$pop)
 ```
 
-That's a pretty high p value. 
+That's a pretty low p value. 
 
 ####Plotting data
 Lastly, we're going to look at how to plot these data. The R base graphics 
@@ -428,9 +459,9 @@ First, let's look at the distribution of values of day 30 inflammation, and
 just for kicks, we'll make the bars blue. Make sure to label the axes!
 
 ```{r}
-hist(x=inflammation$day30,    #plots inflammation at day 30 for all patients
-     main="Histogram of Inflammation level on day 30", #main title
-     xlab="Inflammation level",                        #x axis label
+hist(x=gapminder$pop,    #plots inflammation at day 30 for all patients
+     main="Histogram of Population", #main title
+     xlab="population",                        #x axis label
      ylab="Frequency",                                 #y axis label
      col="blue")                                       #color
 ```
@@ -441,7 +472,7 @@ Now let's look at making a bar chart of the averages for each day using our
 variable daymeans.
 
 ```{r}
-barplot(height=daymeans,                     #height of the bars 
+barplot(height=colmeans,                     #height of the bars 
         main="Mean inflammation over time",  #main graph title
         xlab="Days post vaccine",            #x axis label
         ylab="Mean Inflammation")            #y axis label
@@ -477,14 +508,14 @@ error.bar <- function(x, # the bar plot
 
 Now there is a function called __error.bar__ in your environment. 
 
-![](errorbarfunction.png)
+![](Supplemental/errorbarfunction.png)
 
 Now I replaced their randomly generated variables with the ones that we want to 
 plot in the function call. 
 
 ```{r}
 #This command draws the plot w/o error bars
-barx <- barplot(height=daymeans,     #height of the bars 
+barx <- barplot(height=colmeans,     #height of the bars 
                 ylim=c(0,16),        #y axis range, determined by tweaking
                 col="blue",          #blue bars
                 axis.lty=1,          #choose line type (opaque) for y axis
@@ -492,7 +523,7 @@ barx <- barplot(height=daymeans,     #height of the bars
                 ylab="Mean inflammation (arbitrary units)") #y axis label
 
 #this function draws the error bars
-error.bar(barx, daymeans, daysd)
+error.bar(barx, colmeans, colsds)
 ```
 
 (The error is appearing because the error bar for day 1 is length zero, because
@@ -501,7 +532,7 @@ all values on day 1 are 0.)
 Now let's draw a box plot, separating the data based on gender.
 ```{r}
           #Data to plot      #factor to separate on
-boxplot(inflammation$day30 ~ inflammation$Gender,
+boxplot(gapminder$pop ~ gapminder$continent,
         main="Day 30 inflammation by gender",
         ylab="inflammation (day 30)",
         xlab="Gender")
@@ -513,7 +544,7 @@ We can also use colors to differentiate data points based on gender. First,
 print out the inflammation on day 10 for all patients:
 
 ```{r}
-plot(inflammation$day10)
+plot(gapminder$lifeExp)
 ```
 
 Let's see which of these data points are from females and which are 
@@ -521,7 +552,7 @@ from males. I also altered some other useful base graphics packages to get the
 image ready for publication:
 
 ```{r}
-plot(inflammation$day10, 
+plot(gapminder$lifeExp, 
      xlab="Patient #",        #X axis label
      ylab= "Inflammation",    #Y axis label
      las= 1,                  #Make numbers horizontal on the x axis, 
@@ -531,14 +562,14 @@ plot(inflammation$day10,
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
      ylim= c(0,15),            #set y axis limits
-     col = inflammation$Gender) #Set Color based on Gender
+     col = gapminder$Continent) #Set Color based on Gender
 ```
 
 But how do we know which are male and which are female? A figure legend would 
 help:
 
 ```{r}
-plot(inflammation$day10, 
+plot(gapminder$lifeExp, 
      xlab="Patient #",        #X axis label
      ylab= "Inflammation",    #Y axis label
      las= 1,                  #Make numbers horizontal on the x axis, 
@@ -548,11 +579,11 @@ plot(inflammation$day10,
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
      ylim= c(0,15),            #set y axis limits
-     col = inflammation$Gender) #Set Color based on Gender
+     col = gapminder$continent) #Set Color based on Gender
 
 legend(x= 0,                                #x position of legend
        y=15,                                #y position of legend
-       legend=levels(inflammation$Gender),  #Legend text 
+       legend=levels(gapminder$continent),  #Legend text 
        col = c(1:2),                        #colors to use in legend
        pch=16)                              #specifies how to draw symbols
 ```
