@@ -32,6 +32,7 @@ R studio has a "project" functionality that allows users to save settings and or
 * Go to the __File__ menu  
 * Select __New Project__ 
 
+<<<<<<< HEAD
 This action creates a popup window where you have to make some choices. Since we're starting from scratch, select __New Directory__
 
 ![](Supplemental/newdirectory.png)
@@ -47,6 +48,8 @@ Finally, we have to decide where to put our project and what to call it
 
 ![](Supplemental/name-location-git.png)
 
+=======
+>>>>>>> 793deb89a8debd2c0c653f0acd08b3651be0e659
 ###Open a script file
 Scripts let you save your code to run whenever you want. To open a new script:   
 
