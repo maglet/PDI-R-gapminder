@@ -6,7 +6,7 @@ output: html_document
 geometry: margin=0.5in
 fontsize: 12pt
 ---
-This material was adapted from the [Software Carpentry] [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")lessons. This document and associated script can be found at
+This material was adapted from the Software Carpentry [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")lessons. This document and associated script can be found at
 [https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
 
 #Learning Objectives
@@ -27,12 +27,11 @@ mispelling a variable or function name can cause your code to fail. Luckily, you
 can use scripts to save code that you have written, with notes to indicate what 
 the code does.
 
-###Set up your workspace
+###Setting up your workspace
 R studio has a "project" functionality that allows users to save settings and organize their work. To create an R project:
 * Go to the __File__ menu  
 * Select __New Project__ 
 
-<<<<<<< HEAD
 This action creates a popup window where you have to make some choices. Since we're starting from scratch, select __New Directory__
 
 ![](Supplemental/newdirectory.png)
@@ -41,15 +40,13 @@ Then since we're writing scripts for personal use, select empty project.
 
 ![](Supplemental/EmptyProject.png)
 
-Finally, we have to decide where to put our project and what to call it
+Finally, we have to decide where to put our project and what to call it 
 * Call it __r-for-beginners_
 * Select __Desktop__ as the location
 * Check the box for Create a git repository. Git is a version control system, which allows you to keep track of all your changes and back your work up to the cloud if you wish. 
 
 ![](Supplemental/name-location-git.png)
 
-=======
->>>>>>> 793deb89a8debd2c0c653f0acd08b3651be0e659
 ###Open a script file
 Scripts let you save your code to run whenever you want. To open a new script:   
 
@@ -127,8 +124,8 @@ language. Any text after the '#' symbol will not be executed. Let's
 try it.
 
 ```{r}
-y<-"This is not in a comment" #This text will be assigned to the variable y
-#y<-"This is in a comment"    #This text will not
+phrase<-"This is not in a comment" #This text will be assigned to the variable y
+#phrase<-"This is in a comment"    #This text will not
 y                             #prints y to the console
 ```
 
@@ -138,13 +135,13 @@ Use comments to take notes about what the code does.
 ###Arithmetic Operators
 These operators let you do math in r. They are fairly intuitive. For example, if you want to add x and y:
 
-```r{}
+```{r}
 x + y
 ```
 
 And you get the answer 12. Similarly, you can subtract, multiply, divide, use exponents, do integer division, or get the remainder of division.
 
-```r{}
+```{r}
 x-y
 x*y
 x/y
@@ -156,14 +153,14 @@ y%%x
 ###Relational Operators
 R can also compare values using relational operators. Say you want to know whether one value is bigger than another:
 
-```r{}
+```{r}
 x>y
 (x+y/x) > (x+y/y)
 ```
 
 And R tells you whether that's true or false. You can also evaluate less than, less than or equal to, greater than or equal to, equal to or not equal to
 
-```r{}
+```{r}
 x < y
 x <= y
 x >= y
@@ -174,13 +171,13 @@ x != y
 ###Logical Operators
 You can also use logical operators to string relational operators together. For example, let's say you want to evaluate whether more than one thing is true at a time. like whether x is greater than y and less than z.
 
-```r{}
+```{r}
 z<-45 #creating a Z
 (x>y) & (x<z) #AND operator: Both must be true to get a true result
 ```
 
 Other logical operators inclue
-```r{}
+```{r}
 (x>y) | (x<z) #OR operator: one must be true
 !(x>y) | (x<z) #NOT operator: returns the opposite of above
 ```
@@ -267,11 +264,11 @@ __y__ from earlier. Let's see what class these two items are.
 
 ```{r}
 class(x)
-class(y)
+class(phrase)
 class(gapminder)
 ```
 
-__x__ is numeric; __y__ is character, as expected. 
+__x__ is numeric; __phrase__ is character, as expected. 
 
 gapminder is a __data frame__. This is a special R format that makes dealing 
 with tabular data easier.  
@@ -369,7 +366,7 @@ Prove to yourself that these data sets are equal using a __Boolean operator__
 
 Running __pop == pop2__ would give you  so we'll 
 
-```{r}
+```{r. eval=FALSE}
 pop == pop2
 ```
 
@@ -458,13 +455,13 @@ simplicity's sake.
 We'll be working with __histograms__, __bar  plots__, __box plots__, 
 __scatter plots__, and __a basic plot with colorization by factors__. 
 
-First, let's look at the distribution of values of day 30 inflammation, and 
+First, let's look at the distribution of values of life expenctancy, and 
 just for kicks, we'll make the bars blue. Make sure to label the axes!
 
 ```{r}
-hist(x=gapminder$pop,    #plots inflammation at day 30 for all patients
-     main="Histogram of Population", #main title
-     xlab="population",                        #x axis label
+hist(x=gapminder$lifeExp,    #plots life expectancy for all countries in all years
+     main="Histogram of Life Expectancy", #main title
+     xlab="Life expectancy",                        #x axis label
      ylab="Frequency",                                 #y axis label
      col="blue")                                       #color
 ```
@@ -472,13 +469,13 @@ hist(x=gapminder$pop,    #plots inflammation at day 30 for all patients
 This allows you to see how your data are distributed. Remember how hard it is to [make a histogram in Excel](https://support.microsoft.com/en-us/kb/214269)? That's a thing of the past for you now.
 
 Now let's look at making a bar chart of the averages for each day using our 
-variable daymeans.
+variable colmeans.
 
 ```{r}
-barplot(height=colmeans,                     #height of the bars 
-        main="Mean inflammation over time",  #main graph title
-        xlab="Days post vaccine",            #x axis label
-        ylab="Mean Inflammation")            #y axis label
+barplot(height=gapminder[1,37:48],                     #height of the bars 
+        main="Mean life expectancy in Angola 1952-2007",  #main graph title
+        xlab="Year",            #x axis label
+        ylab="Mean Life expectancy")            #y axis label
 ```
 
 But wait, where are the error bars? This requires some extra code.
@@ -517,71 +514,85 @@ Now I replaced their randomly generated variables with the ones that we want to
 plot in the function call. 
 
 ```{r}
+
+barplot(height= gapminder[1,37:48]      #height of the bars 
+        main="Mean life expectancy in Angola 1952-2007",  #main graph title
+        xlab="Year",            #x axis label
+        ylab="Mean Life expectancy")            #y axis label
+
 #This command draws the plot w/o error bars
-barx <- barplot(height=colmeans,     #height of the bars 
-                ylim=c(0,16),        #y axis range, determined by tweaking
+barx <- barplot(height=gapminder[1,37:48],,     #height of the bars 
+                #ylim=c(0,16),        #y axis range, determined by tweaking
                 col="blue",          #blue bars
                 axis.lty=1,          #choose line type (opaque) for y axis
-                xlab="Day post vaccination",                #x axis label
-                ylab="Mean inflammation (arbitrary units)") #y axis label
+                xlab="Year",                #x axis label
+                ylab="Mean life expectancy") #y axis label
 
 #this function draws the error bars
-error.bar(barx, colmeans, colsds)
+error.bar(barx, gapminder[1,37:48], colsds)
 ```
 
 (The error is appearing because the error bar for day 1 is length zero, because
 all values on day 1 are 0.)
 
-Now let's draw a box plot, separating the data based on gender.
+Now let's draw a box plot, separating the data based on continent.
+
 ```{r}
           #Data to plot      #factor to separate on
 boxplot(gapminder$pop ~ gapminder$continent,
-        main="Day 30 inflammation by gender",
-        ylab="inflammation (day 30)",
-        xlab="Gender")
+        main="Population by continent",
+        ylab="Population",
+        xlab="Continent")
 ```
 
-Not much of a gender difference, which was expected because of the T-test results.
-
-We can also use colors to differentiate data points based on gender. First, 
-print out the inflammation on day 10 for all patients:
+Wow, asia has a lot of countries with outliers. We can zoom on on the box plot ysing the y lim parameter.
 
 ```{r}
-plot(gapminder$lifeExp)
+          #Data to plot      #factor to separate on
+boxplot(gapminder$pop ~ gapminder$continent,
+        main="Population by continent",
+        ylab="Population",
+        xlab="Continent",
+        ylim=c(0,4.0e+08))
 ```
 
-Let's see which of these data points are from females and which are 
-from males. I also altered some other useful base graphics packages to get the
-image ready for publication:
+We can also use colors to differentiate data points based on continent. First, 
+print out the life expectancy data:
 
 ```{r}
-plot(gapminder$lifeExp, 
-     xlab="Patient #",        #X axis label
-     ylab= "Inflammation",    #Y axis label
+plot(gapminder$lifeExp, gapminder$year)
+```
+
+Let's see which of these data points are from which continent. I also altered some other useful base graphics packages to get the image ready for publication:
+
+```{r}
+plot(gapminder$lifeExp, gapminder$year, 
+     xlab="Index",        #X axis label
+     ylab= "Life expectancy",    #Y axis label
      las= 1,                  #Make numbers horizontal on the x axis, 
      cex.lab=1.2,             #Increase axis labels font size
      cex.axis=1.2,            #Increase axis label number size
      lwd=2,                   #Increase line/dot thickness
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
-     ylim= c(0,15),            #set y axis limits
+     ylim= c(0,100),            #set y axis limits
      col = gapminder$Continent) #Set Color based on Gender
 ```
 
-But how do we know which are male and which are female? A figure legend would 
+But how do we know which go to which continent? A figure legend would 
 help:
 
 ```{r}
-plot(gapminder$lifeExp, 
-     xlab="Patient #",        #X axis label
-     ylab= "Inflammation",    #Y axis label
+plot(gapminder$lifeExp, gapminder$year,
+     xlab="Index",        #X axis label
+     ylab= "Life expectancy",    #Y axis label (somehow get )
      las= 1,                  #Make numbers horizontal on the x axis, 
      cex.lab=1.2,             #Increase axis labels font size
      cex.axis=1.2,            #Increase axis label number size
      lwd=2,                   #Increase line/dot thickness
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
-     ylim= c(0,15),            #set y axis limits
+     ylim= c(0,100),            #set y axis limits
      col = gapminder$continent) #Set Color based on Gender
 
 legend(x= 0,                                #x position of legend
