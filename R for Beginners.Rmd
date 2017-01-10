@@ -6,7 +6,7 @@ output: html_document
 geometry: margin=0.5in
 fontsize: 12pt
 ---
-This material was adapted from the Software Carpentry [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")lessons. This document and associated script can be found at
+This material was adapted from the Software Carpentry [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv") lessons. This document and associated script can be found at
 [https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
 
 #Learning Objectives
@@ -28,20 +28,22 @@ can use scripts to save code that you have written, with notes to indicate what
 the code does.
 
 ###Setting up your workspace
-R studio has a "project" functionality that allows users to save settings and organize their work. To create an R project:
-* Go to the __File__ menu  
-* Select __New Project__ 
+R studio has a "project" functionality that allows users to save settings and organize their work. 
 
-This action creates a popup window where you have to make some choices. Since we're starting from scratch, select __New Directory__
+####To create an R project  
+* go to the __File__ menu  
+* select __New Project__ 
+
+####This action creates a popup window where you have to make some choices. Since we're starting from scratch, select __New Directory__
 
 ![](Supplemental/newdirectory.png)
 
-Then since we're writing scripts for personal use, select empty project.
+####Then since we're writing scripts for personal use, select empty project.
 
 ![](Supplemental/EmptyProject.png)
 
-Finally, we have to decide where to put our project and what to call it 
-* Call it __r-for-beginners_
+####Finally, we have to decide where to put our project and what to call it 
+* Call it __r-for-beginners__
 * Select __Desktop__ as the location
 * Check the box for Create a git repository. Git is a version control system, which allows you to keep track of all your changes and back your work up to the cloud if you wish. 
 
@@ -89,7 +91,7 @@ x<-4 #assigns the value 4 to the variable x
 y<-8 #assigns the value 8 to the variable y
 ```
 
-So now, when you type in 'x' R outputs the number 4 and 8 for y. 
+So now, when you type the variable name in the console, R outputs the number 4 and 8 for y. 
 
 How do we send this code to the **Console** (lower left window) to actually run the code? There's a short key for that! 
 
@@ -124,9 +126,9 @@ language. Any text after the '#' symbol will not be executed. Let's
 try it.
 
 ```{r}
-phrase<-"This is not in a comment" #This text will be assigned to the variable y
+phrase<-"This is not in a comment" #This text will be assigned to the variable phrase
 #phrase<-"This is in a comment"    #This text will not
-y                             #prints y to the console
+phrase                             #prints phrase to the console
 ```
 
 The system only prints out the value that was assigned in the un commented code. 
@@ -155,7 +157,6 @@ R can also compare values using relational operators. Say you want to know wheth
 
 ```{r}
 x>y
-(x+y/x) > (x+y/y)
 ```
 
 And R tells you whether that's true or false. You can also evaluate less than, less than or equal to, greater than or equal to, equal to or not equal to
@@ -172,7 +173,7 @@ x != y
 You can also use logical operators to string relational operators together. For example, let's say you want to evaluate whether more than one thing is true at a time. like whether x is greater than y and less than z.
 
 ```{r}
-z<-45 #creating a Z
+z<-45 #creating the variable z
 (x>y) & (x<z) #AND operator: Both must be true to get a true result
 ```
 
@@ -198,9 +199,7 @@ Now we'll go over some really useful functions to use in R.
 ###Loading files
 You can use the assignment operator to load tabular data into R. 
 
-Let's use a data table called **gapminder.csv** that contains daily 
-antibody levels for 30 days after the administration of a vaccine. The table 
-also contains data about the gender of the subjects.
+Let's use a data table called **gapminder.csv** that contains population, gross domestic product, and life expectancy information for countries worldwide
 
 ####Downloading files
 You can download the file at this address: 
@@ -211,7 +210,8 @@ function is for.
 
 Here's the code to download a file in R.
 ```{r}
-download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "gapminder.csv", method="auto")
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", #the URL that contains the file 
+              destfile = "gapminder.csv")  #What to call the file
 ```
 
 See what I mean about '=' being used for something different in R? It's used to 
@@ -559,13 +559,13 @@ We can also use colors to differentiate data points based on continent. First,
 print out the life expectancy data:
 
 ```{r}
-plot(gapminder$lifeExp, gapminder$year)
+plot(gapminder$year, gapminder$lifeExp)
 ```
 
 Let's see which of these data points are from which continent. I also altered some other useful base graphics packages to get the image ready for publication:
 
 ```{r}
-plot(gapminder$lifeExp, gapminder$year, 
+plot(gapminder$year, gapminder$lifeExp, 
      xlab="Index",        #X axis label
      ylab= "Life expectancy",    #Y axis label
      las= 1,                  #Make numbers horizontal on the x axis, 
@@ -582,7 +582,7 @@ But how do we know which go to which continent? A figure legend would
 help:
 
 ```{r}
-plot(gapminder$lifeExp, gapminder$year,
+plot(gapminder$year, gapminder$lifeExp,
      xlab="Index",        #X axis label
      ylab= "Life expectancy",    #Y axis label (somehow get )
      las= 1,                  #Make numbers horizontal on the x axis, 
