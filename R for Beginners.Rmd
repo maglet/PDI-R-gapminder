@@ -364,13 +364,13 @@ Prove to yourself that these data sets are equal using a __Boolean operator__
 "==". Make sure to use the double equal sign when you're evaluating whether 
 2 values are equivalent. A single "=" will try to perform an assignment operation.
 
-Running __pop == pop2__ would give you  so we'll 
+Running
 
 ```{r eval=FALSE}
 pop == pop2
 ```
 
-The above code returns a list of TRUE/FALSE values that indicate whether the values in each postition of the list match. Scanning through that list could get tedious,
+returns a list of TRUE/FALSE values that indicate whether the values in each postition of the list match. Scanning through that list could get tedious,
 so instead we can use the fact that __TRUE__ in R is equivalent to __1__, and 
 __FALSE__ is the equivalent of __0__. Thus, if all elements are equal to each other,
 the sum of that list of __TRUE__ s and __FALSE__ s would be equal to the number of 
@@ -380,7 +380,7 @@ rows.
 nrow(gapminder)==sum(pop == pop2)
 ```
 
-It checks out! And now you only have to look at one result.
+It checks out! And you only have to look at one result.
 
 Now let's calculate the mean of this column:
 
@@ -392,7 +392,7 @@ But what if you want to find the mean for all of the numeric columns? That's whe
 __apply__ function comes in. This function applies a function (__FUN__) to a 
 chunk of data (__X__) on either the rows or columns (__MARGIN__).
 
-Here's how you get the mean and standard deviation for all of the day columns:
+Here's how you get the mean and standard deviation for all of the numeric columns:
 ```{r}
 colmeans<-apply(X=gapminder[,c(3,5,6)],  #the data you want to use
                 MARGIN=2,               #apply the function to the columns
@@ -418,7 +418,7 @@ rowmeans<-apply(X=gapminder[,c(3,5,6)],    #the data you want to use
 
 #####Subsetting Rows. 
 
-But what if you only want to see values for a certain subset countries? That's
+But what if you only want to see values for a certain country or continent? That's
 where the __subset__ function comes in. Suppose you want to get population 
 values only for African countries and store that subset in a variable called 
 __AfricaPop__.
@@ -450,7 +450,7 @@ That's a pretty low p value.
 Lastly, we're going to look at how to plot these data. The R base graphics 
 package has many options for plotting your data. Many people prefer more 
 advanced packages, such as [ggplot2](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/), but we will stick to the base package here for 
-simplicity's sake.
+simplicity's sake. 
 
 We'll be working with __histograms__, __bar  plots__, __box plots__, 
 __scatter plots__, and __a basic plot with colorization by factors__. 
@@ -474,7 +474,8 @@ Now let's look at making a bar chart of the average life expectancy for each yea
 barplot(height=gapminder[37:48,5],                    #height of the bars 
         main="Mean life expectancy in Angola 1952-2007",  #main graph title
         xlab="Year",            #x axis label
-        ylab="Mean Life expectancy")            #y axis label
+        ylab="Mean Life expectancy",            #y axis label
+        col="green")          #blue bars
 ```
 
 But wait, where are the error bars? This requires some extra code.
@@ -513,16 +514,10 @@ Now I replaced their randomly generated variables with the ones that we want to
 plot in the function call. 
 
 ```{r}
-
-barplot(height=gapminder[37:48,5],     #height of the bars 
-        main="Mean life expectancy in Angola 1952-2007",  #main graph title
-        xlab="Year",            #x axis label
-        ylab="Mean Life expectancy")            #y axis label
-
 #This command draws the plot w/o error bars
 barx <- barplot(height=gapminder[37:48,5],     #height of the bars 
-                #ylim=c(0,16),        #y axis range, determined by tweaking
-                col="blue",          #blue bars
+                ylim=c(0,50),        #y axis range, determined by tweaking
+                col="green",          #blue bars
                 axis.lty=1,          #choose line type (opaque) for y axis
                 xlab="Year",                #x axis label
                 ylab="Mean life expectancy") #y axis label
@@ -544,7 +539,7 @@ boxplot(gapminder$pop ~ gapminder$continent,
         xlab="Continent")
 ```
 
-Wow, asia has a lot of countries with outliers. We can zoom on on the box plot ysing the y lim parameter.
+Wow, Asia and the Americas have outliers. We can zoom on on the box plot ysing the y lim parameter.
 
 ```{r}
           #Data to plot      #factor to separate on
@@ -559,15 +554,15 @@ We can also use colors to differentiate data points based on continent. First,
 print out the life expectancy data:
 
 ```{r}
-plot(gapminder$year, gapminder$lifeExp)
+plot(gapminder$gdpPercap, gapminder$lifeExp)
 ```
 
 Let's see which of these data points are from which continent. I also altered some other useful base graphics packages to get the image ready for publication:
 
 ```{r}
-plot(gapminder$year, gapminder$lifeExp, 
-     xlab="Index",        #X axis label
-     ylab= "Life expectancy",    #Y axis label
+plot(gapminder$gdpPercap, gapminder$lifeExp,
+     xlab="GDP per capita",        #X axis label
+     ylab= "LifeExpectancy (years)",    #Y axis label (somehow get )
      las= 1,                  #Make numbers horizontal on the x axis, 
      cex.lab=1.2,             #Increase axis labels font size
      cex.axis=1.2,            #Increase axis label number size
@@ -575,16 +570,17 @@ plot(gapminder$year, gapminder$lifeExp,
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
      ylim= c(0,100),            #set y axis limits
-     col = gapminder$Continent) #Set Color based on Gender
+     #xlim=c(200,115000),
+     col = gapminder$continent) #Set Color based on Continent
 ```
 
 But how do we know which go to which continent? A figure legend would 
 help:
 
 ```{r}
-plot(gapminder$year, gapminder$lifeExp,
-     xlab="Index",        #X axis label
-     ylab= "Life expectancy",    #Y axis label (somehow get )
+plot(gapminder$gdpPercap, gapminder$lifeExp,
+     xlab="GDP per capita",        #X axis label
+     ylab= "LifeExpectancy (years)",    #Y axis label (somehow get )
      las= 1,                  #Make numbers horizontal on the x axis, 
      cex.lab=1.2,             #Increase axis labels font size
      cex.axis=1.2,            #Increase axis label number size
@@ -592,12 +588,13 @@ plot(gapminder$year, gapminder$lifeExp,
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
      ylim= c(0,100),            #set y axis limits
-     col = gapminder$continent) #Set Color based on Gender
+     #xlim=c(200,115000),
+     col = gapminder$continent) #Set Color based on Continent
 
-legend(x= 0,                                #x position of legend
-       y=15,                                #y position of legend
+legend(x= 8e+04,                                #x position of legend
+       y=50,                                #y position of legend
        legend=levels(gapminder$continent),  #Legend text 
-       col = c(1:2),                        #colors to use in legend
+       col = c(1:5),
        pch=16)                              #specifies how to draw symbols
 ```
 
