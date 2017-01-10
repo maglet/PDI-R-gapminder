@@ -1,0 +1,127 @@
+---
+title: "R for Beginners: working with data frames"
+author: "C. Tobin Magle"
+date: "Jan 11, 2017"
+output: html_document
+geometry: margin=0.5in
+fontsize: 12pt
+---
+This material was adapted from the Software Carpentry [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv") lessons. This document and associated script can be found at
+[https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
+
+####Subsetting
+Especially with large data sets, sometimes you need to assess a particular part 
+of the data. Depending on what you want to do, you'll either want to work with 
+a subset of rows or columns. We'll look at how to subset by both. 
+
+#####Subsetting Columns
+Let's say that you're only interested in the population data. Use the 
+following code to extract only the population data and store it in a variable called
+__pop__
+
+```{r}
+pop<-gapminder$pop
+```
+
+* You already know about the assignment operator (<-)
+* The __$__ operator lets you subset the data fram based on column name
+* __Syntax__: (variable name)__$__(column name)
+
+Now you should see a new variable called __pop__  with 720 
+elements in your global environment. 
+
+You can get the same subset using the "[row,column]" format:
+```{r}
+pop2<-gapminder[,3]
+```
+
+* __Syntax__: the row you want and the column you want, in brackets, separated 
+by a comma
+* Leaving either field blank, will select ALL elements, in this case all rows
+* the population data are stored in column 32 of the data frame.
+
+Prove to yourself that these data sets are equal using a __Boolean operator__ 
+"==". Make sure to use the double equal sign when you're evaluating whether 
+2 values are equivalent. A single "=" will try to perform an assignment operation.
+
+Running
+
+```{r eval=FALSE}
+pop == pop2
+```
+
+returns a list of TRUE/FALSE values that indicate whether the values in each postition of the list match. Scanning through that list could get tedious,
+so instead we can use the fact that __TRUE__ in R is equivalent to __1__, and 
+__FALSE__ is the equivalent of __0__. Thus, if all elements are equal to each other,
+the sum of that list of __TRUE__ s and __FALSE__ s would be equal to the number of 
+rows.
+
+```{r}
+nrow(gapminder)==sum(pop == pop2)
+```
+
+It checks out! And you only have to look at one result.
+
+Now let's calculate the mean of this column:
+
+```{r}
+mean(pop)
+```
+
+But what if you want to find the mean for all of the numeric columns? That's where the 
+__apply__ function comes in. This function applies a function (__FUN__) to a 
+chunk of data (__X__) on either the rows or columns (__MARGIN__).
+
+Here's how you get the mean and standard deviation for all of the numeric columns:
+```{r}
+colmeans<-apply(X=gapminder[,c(3,5,6)],  #the data you want to use
+                MARGIN=2,               #apply the function to the columns
+                FUN=mean)               #take the mean of the values
+
+colsds<-apply(X=gapminder[,c(3,5,6)],     #the data you want to use
+             MARGIN=2,                  #apply the function to the colummns
+             FUN=sd)                    #take the standard deviation of the columns
+```
+
+* __X=gapminder[,c(3,5,6)]__: grabs the 3rd to 32nd columns of the data frame
+* __MARGIN = 2__: tells apply to run the function on each column (MARGIN=1 would
+indicate rows)
+* __FUN= mean__: tells apply to run the mean function 
+
+You can get the mean for each patient as well by changing the __margin__.
+
+```{r}
+rowmeans<-apply(X=gapminder[,c(3,5,6)],    #the data you want to use
+               MARGIN=1,                 #apply the function to rows
+               FUN=mean)                 #take the mean of the rows
+```
+
+#####Subsetting Rows. 
+
+But what if you only want to see values for a certain country or continent? That's
+where the __subset__ function comes in. Suppose you want to get population 
+values only for African countries and store that subset in a variable called 
+__AfricaPop__.
+
+```{r}
+AfricaPop <- subset(x= gapminder,            #the data frame to subset
+                        subset = (continent == "Africa"))   #the factor to subset on
+```
+
+* __x = gapminder__: tells subset the data set we want to use
+* __subset = (continent == "Africa")__: a boolean expression that tells subset to only 
+select observations (rows) with the value "Africa" in the continent variable (column).
+
+Let's do the same thing for Asian countries
+```{r}
+AsiaPop <- subset(x= gapminder,            #the data frame to subset
+                        subset = (continent == "Asia"))   #the factor to subset on
+```
+
+Now we can compare the data for the two groups using a t-test:
+
+```{r}
+t.test(AfricaPop$pop, AsiaPop$pop)
+```
+
+That's a pretty low p value. 
