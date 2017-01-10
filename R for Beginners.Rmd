@@ -366,7 +366,7 @@ Prove to yourself that these data sets are equal using a __Boolean operator__
 
 Running __pop == pop2__ would give you  so we'll 
 
-```{r. eval=FALSE}
+```{r eval=FALSE}
 pop == pop2
 ```
 
@@ -468,11 +468,10 @@ hist(x=gapminder$lifeExp,    #plots life expectancy for all countries in all yea
 
 This allows you to see how your data are distributed. Remember how hard it is to [make a histogram in Excel](https://support.microsoft.com/en-us/kb/214269)? That's a thing of the past for you now.
 
-Now let's look at making a bar chart of the averages for each day using our 
-variable colmeans.
+Now let's look at making a bar chart of the average life expectancy for each year.
 
 ```{r}
-barplot(height=gapminder[1,37:48],                     #height of the bars 
+barplot(height=gapminder[37:48,5],                    #height of the bars 
         main="Mean life expectancy in Angola 1952-2007",  #main graph title
         xlab="Year",            #x axis label
         ylab="Mean Life expectancy")            #y axis label
@@ -515,13 +514,13 @@ plot in the function call.
 
 ```{r}
 
-barplot(height= gapminder[1,37:48]      #height of the bars 
+barplot(height=gapminder[37:48,5],     #height of the bars 
         main="Mean life expectancy in Angola 1952-2007",  #main graph title
         xlab="Year",            #x axis label
         ylab="Mean Life expectancy")            #y axis label
 
 #This command draws the plot w/o error bars
-barx <- barplot(height=gapminder[1,37:48],,     #height of the bars 
+barx <- barplot(height=gapminder[37:48,5],     #height of the bars 
                 #ylim=c(0,16),        #y axis range, determined by tweaking
                 col="blue",          #blue bars
                 axis.lty=1,          #choose line type (opaque) for y axis
@@ -529,7 +528,7 @@ barx <- barplot(height=gapminder[1,37:48],,     #height of the bars
                 ylab="Mean life expectancy") #y axis label
 
 #this function draws the error bars
-error.bar(barx, gapminder[1,37:48], colsds)
+error.bar(barx, gapminder[37:48,5], rep(5, length(gapminder[37:48,5])))
 ```
 
 (The error is appearing because the error bar for day 1 is length zero, because
@@ -553,7 +552,7 @@ boxplot(gapminder$pop ~ gapminder$continent,
         main="Population by continent",
         ylab="Population",
         xlab="Continent",
-        ylim=c(0,4.0e+08))
+        ylim=c(0,1.2e+08))
 ```
 
 We can also use colors to differentiate data points based on continent. First, 
