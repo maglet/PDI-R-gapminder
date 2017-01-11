@@ -91,7 +91,6 @@ __class__. Every variable in R has a class, including the variables __x__ from e
 ```{r}
 x<-4
 class(x)
-
 ```
 
 __x__ is a numeric variable.  

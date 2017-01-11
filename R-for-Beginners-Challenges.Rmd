@@ -1,0 +1,169 @@
+---
+title: "R-for-Beginners-Challenges"
+output: html_document
+---
+
+```{r echo=FALSE}
+gapminder <- read.csv("gapminder.csv") #reads data from the csv file
+cat<-3
+dog<-2
+pony<-10000
+```
+
+## Setup
+
+####1. What does the bottom right window (console) of the R studio interface do?
+Runs code
+
+####2. Why should you set up a .git repository in your project directory?
+keep track of changes, backup online
+
+####3. IF you don't specify otherwise, which directory is R studio workingin by default when you open a project
+
+The project directory
+
+## Operators
+
+####1. How would you assign the value 467 to the variable kitten?
+
+```{r}
+kitten<-467
+kitten=465
+467->kitten
+```
+####2. How woud you determine if the variable cat is greater than the variable dog and that cat is less than pony??
+
+```{r}
+cat>dog & cat<pony
+```
+
+####3. Pretend you want to know whether the sum of red and blue is greater than the difference between green and purple. How would you write that out?
+
+```{r eval = FALSE}
+(red+blue)<(green-purple)
+```
+## Using functions
+####1. How would you find the help file for par: a function that alters graphics parameters?
+```{r eval = FALSE}
+?par
+help(par)
+```
+####2. What is the second argument of the t.test function?
+y: an optional (non-empty) numeric vector of data values.
+
+####3. What happens if you don't use the destfile argument in the download.file function?
+
+Error message saying it's not optional
+
+## Subsetting
+### Challenge 1: Fix each of the following common data frame subsetting errors:
+
+####1. Extract observations collected for the year 1957
+
+```{r eval=FALSE}
+# gapminder[gapminder$year = 1957,]  
+gapminder[gapminder$year == 1957,]
+```
+####2. Extract all columns except 1 through to 4
+```{r eval=FALSE}
+# gapminder[,-1:4]  
+gapminder[,-c(1:4)]
+```
+####3. Extract the rows where the life expectancy is longer the 80 years
+```{r eval=FALSE}
+# gapminder[gapminder$lifeExp > 80]  
+gapminder[gapminder$lifeExp > 80,]
+```
+####4. Extract the first row, and the fourth and fifth columns (lifeExp and gdpPercap).
+```{r eval=FALSE}
+# gapminder[1, 4, 5]  
+gapminder[1, c(4, 5)]
+```
+####5. Advanced: extract rows that contain information for the years 2002 and 2007
+```{r eval=FALSE}
+# gapminder[gapminder$year == 2002 | 2007,]   
+gapminder[gapminder$year == 2002 | gapminder$year == 2007,]  
+gapminder[gapminder$year %in% c(2002, 2007),]
+```
+##Plotting
+
+Consider the scatter plot of GDP vs. life expectancy.
+####1. How would you include only data from 2007? (remember subsetting)
+```{r}
+gapminder2007<-subset(gapminder,gapminder$year == 2007)
+plot(gapminder2007$gdpPercap, gapminder2007$lifeExp,
+     xlab="GDP per capita",        #X axis label
+     ylab= "LifeExpectancy (years)",    #Y axis label (somehow get )
+     las= 1,                  #Make numbers horizontal on the x axis, 
+     cex.lab=1.2,             #Increase axis labels font size
+     cex.axis=1.2,            #Increase axis label number size
+     lwd=2,                   #Increase line/dot thickness
+     bty = "n",               #removes black border around the plot
+     pch=16,                  #Specifies symbols to draw
+     ylim= c(0,100),            #set y axis limits
+     col = gapminder$continent) #Set Color based on Continent
+
+legend(x= 30000,                            #x position of legend
+       y=50,                                #y position of legend
+       legend=levels(gapminder$continent),  #Legend text 
+       col = c(1:5),
+       pch=16)                              #specifies how to draw symbols
+```
+
+####2. How would you change the data to log axis?
+```{r}
+gapminder2007<-subset(gapminder,gapminder$year == 2007)
+plot(gapminder2007$gdpPercap, gapminder2007$lifeExp,
+     log = "x",
+     xlab="GDP per capita",        #X axis label
+     ylab= "LifeExpectancy (years)",    #Y axis label (somehow get )
+     las= 1,                  #Make numbers horizontal on the x axis, 
+     cex.lab=1.2,             #Increase axis labels font size
+     cex.axis=1.2,            #Increase axis label number size
+     lwd=2,                   #Increase line/dot thickness
+     bty = "n",               #removes black border around the plot
+     pch=16,                  #Specifies symbols to draw
+     ylim= c(0,100),            #set y axis limits
+     col = gapminder$continent) #Set Color based on Continent
+
+legend(x= 10000,                            #x position of legend
+       y=40,                                #y position of legend
+       legend=levels(gapminder$continent),  #Legend text 
+       col = c(1:5),
+       pch=16)                              #specifies how to draw symbols
+```
+
+####3. How would you make a similar plot from European countries, and colorize by year?
+
+```{r}
+gapminderEu<-subset(gapminder,gapminder$continent == "Europe")
+plot(gapminderEu$gdpPercap, gapminderEu$lifeExp,
+     log = "x",
+     xlab="GDP per capita",        #X axis label
+     ylab= "Life Expectancy (years)",    #Y axis label (somehow get )
+     las= 1,                  #Make numbers horizontal on the x axis, 
+     cex.lab=1.2,             #Increase axis labels font size
+     cex.axis=1.2,            #Increase axis label number size
+     lwd=2,                   #Increase line/dot thickness
+     bty = "n",               #removes black border around the plot
+     pch=16,                  #Specifies symbols to draw
+     ylim= c(0,85),            #set y axis limits
+     col = gapminder$year) #Set Color based on Continent
+
+legend(x= 10000,                            #x position of legend
+       y=62,                                #y position of legend
+       legend=levels(as.factor(gapminder$year)),  #Legend text 
+       col = c(1:5),
+       pch=16)                              #specifies how to draw symbols
+```
+
+####4. Make a red histogram of population for all countries in 2007
+```{r}
+hist(x=gapminder$pop,    #plots life expectancy for all countries in all years
+     main="Histogram of population in 2007", #main title
+     xlab="Population",                        #x axis label
+     ylab="Frequency",                                 #y axis label
+     col="red")                                       #color
+```
+
+####5.

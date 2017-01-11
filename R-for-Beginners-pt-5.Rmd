@@ -137,7 +137,6 @@ plot(gapminder$gdpPercap, gapminder$lifeExp,
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
      ylim= c(0,100),            #set y axis limits
-     #xlim=c(200,115000),
      col = gapminder$continent) #Set Color based on Continent
 ```
 
@@ -155,7 +154,6 @@ plot(gapminder$gdpPercap, gapminder$lifeExp,
      bty = "n",               #removes black border around the plot
      pch=16,                  #Specifies symbols to draw
      ylim= c(0,100),            #set y axis limits
-     #xlim=c(200,115000),
      col = gapminder$continent) #Set Color based on Continent
 
 legend(x= 8e+04,                                #x position of legend

@@ -1,5 +1,5 @@
 ---
-title: "R for Beginners: working with data frames"
+title: "R for Beginners: subetting data frames"
 author: "C. Tobin Magle"
 date: "Jan 11, 2017"
 output: html_document
@@ -129,3 +129,8 @@ t.test(AfricaPop$pop, AsiaPop$pop)
 ```
 
 That's a pretty low p value. 
+
+Start accordion
+<div id="accordion-start"></div>
+Inside accordion
+<div id="accordion-stop"></div>
