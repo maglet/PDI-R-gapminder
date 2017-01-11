@@ -1,5 +1,5 @@
 ---
-title: "R for Beginners: Using Functions"
+title: "R for Beginners: Variables and Functions"
 author: "C. Tobin Magle"
 date: "Jan 11, 2017"
 output: html_document
@@ -139,27 +139,27 @@ To find out what data type is contained in each column, use the __str__ command
 str(gapminder)
 ```
 
-By default, __str__ displays the dimensions of the data frame (720 observations 
-x 32 variables) and the name of each variable (ID, Gender, day1...) followed by 
+By default, __str__ displays the dimensions of the data frame and the name of each variable followed by 
 the type of data (__Factor__ or __integer__) and the first 10 elements in the 
 column. 
 
-In this dataset, each day column hold a list of integers that represent 
-antibody levels. 
+In this dataset, the year, pop, lifeExp and gdpPercap contain numbers (num or int). 
 
-But what does it mean to say that __id__ and __Gender__ are factors? __Factors__ 
+But what does it mean to say that __country__ and __continent__ are factors? __Factors__ 
 are categorical data that describe the observation.
 
-* __id__ is a factor with 720 levels, the same as the number of observations. This 
-is good because __id__ is meant to be a unique identifier for each patient. This 
-is not a very useful factor though, because you can't group the data by this 
-variable. 
-* __Gender__ is a factor with 2 levels: "M" or "F". You can use this factor to 
-split the data into male and female subgroups. We'll come back to this point 
-later. 
+* __country__ is a factor with 142 levels, the number of countries in this dataset.
+* __continent__ is a factor with 5 levels, the 5 continents represented in this dataset 
+
+You can use factors to split the data subgroups. We'll come back to this point in pt 4 of this lesson. 
 
 Finally, to get the min, max, median, mean, and quartiles for the numerica data,
 and the counts for the factor variables, you can use the __summary__ command. 
 ```{r}
 summary(gapminder)
 ```
+
+###Take home points: 
+* You can find functions in the base R installation, packages, or create your own
+* Functions can help you download files (download.file) and import data (read.csv)
+* Base R has usefil functions for examining values and data (class, str, head, summary)

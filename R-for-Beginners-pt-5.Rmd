@@ -163,6 +163,11 @@ legend(x= 8e+04,                                #x position of legend
        pch=16)                              #specifies how to draw symbols
 ```
 
+###Take home points
+* The R base graphics package allows you to make histograms, bar plots, box plots, and scatter plots
+* These plots can be colorized based on factors
+* grapics parameters can be used to alter the look of the plot
+
 #Resources
 Congrats! Now you can plot tabular data in R! If you want to learn more, see 
 these resources:

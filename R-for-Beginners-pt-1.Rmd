@@ -70,3 +70,9 @@ See what the different windows represent below.
 **Upper right**: Environment- view the variables defined in your environment  
 **Lower left**: Console- where the code is executed  
 **Lower Right**: Help: where to view help files, plots, and loaded files  
+
+### Take home points:
+* R studio is a development environment for the R language
+* R studio project allow you to organize your work in 1 place
+* R scripts allow you to save your code to re-run or edit
+* R studio can integrate git, a version control system

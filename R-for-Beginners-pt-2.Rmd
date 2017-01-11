@@ -120,3 +120,10 @@ Other logical operators inclue
 (x>y) | (x<z) #OR operator: one must be true
 !(x>y) | (x<z) #NOT operator: returns the opposite of above
 ```
+
+### Take home points: 
+* There are 4 types of operators: assignment, logical, relational and arithmetic
+* assignment operators let you assign values to variables
+* relational operators let you compare values
+* logical operators let you combine logical values
+* arithmetic operators perform arithmetic like addition, subtraction, multiplication and division

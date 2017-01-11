@@ -1,5 +1,5 @@
 ---
-title: "R for Beginners: subetting data frames"
+title: "R for Beginners: working with data frames"
 author: "C. Tobin Magle"
 date: "Jan 11, 2017"
 output: html_document
@@ -130,7 +130,9 @@ t.test(AfricaPop$pop, AsiaPop$pop)
 
 That's a pretty low p value. 
 
-Start accordion
-<div id="accordion-start"></div>
-Inside accordion
-<div id="accordion-stop"></div>
+###Take home points:  
+* You can subset data frames by row or columns using bracket notations
+* You can also subset columns by name using <data frame>$<variable name>
+* Apply lets you perform functions on rows or columns in a data frame
+* The subset function lets you subset by categorical values
+* R has built in statistical functions
