@@ -1,5 +1,5 @@
 ---
-title: "R for Beginners"
+title: "R for Beginners: plotting data"
 author: "C. Tobin Magle"
 date: "Jan 11, 2017"
 output: html_document
@@ -8,6 +8,10 @@ fontsize: 12pt
 ---
 This material was adapted from the Software Carpentry [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv") lessons. This document and associated script can be found at
 [https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
+
+```{r echo=FALSE}
+gapminder <- read.csv("gapminder.csv") #reads data from the csv file
+```
 
 ####Plotting data
 Lastly, we're going to look at how to plot these data. The R base graphics 

@@ -9,12 +9,16 @@ fontsize: 12pt
 This material was adapted from the Software Carpentry [Inflammation](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data.html) and [Gapminder]("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv") lessons. This document and associated script can be found at
 [https://github.com/maglet/r-for-beginners](https://github.com/maglet/r-for-beginners)
 
+```{r echo=FALSE}
+gapminder <- read.csv("gapminder.csv") #reads data from the csv file
+```
+
 ####Subsetting
 Especially with large data sets, sometimes you need to assess a particular part 
 of the data. Depending on what you want to do, you'll either want to work with 
 a subset of rows or columns. We'll look at how to subset by both. 
 
-#####Subsetting Columns
+#####Subsetting Columns and Rows
 Let's say that you're only interested in the population data. Use the 
 following code to extract only the population data and store it in a variable called
 __pop__
@@ -27,7 +31,7 @@ pop<-gapminder$pop
 * The __$__ operator lets you subset the data fram based on column name
 * __Syntax__: (variable name)__$__(column name)
 
-Now you should see a new variable called __pop__  with 720 
+Now you should see a new variable called __pop__  with 1704 
 elements in your global environment. 
 
 You can get the same subset using the "[row,column]" format:
@@ -50,7 +54,7 @@ Running
 pop == pop2
 ```
 
-returns a list of TRUE/FALSE values that indicate whether the values in each postition of the list match. Scanning through that list could get tedious,
+returns a list of TRUE/FALSE values that indicate whether the values of each element in the vector match. Scanning through that list could get tedious,
 so instead we can use the fact that __TRUE__ in R is equivalent to __1__, and 
 __FALSE__ is the equivalent of __0__. Thus, if all elements are equal to each other,
 the sum of that list of __TRUE__ s and __FALSE__ s would be equal to the number of 
@@ -96,7 +100,7 @@ rowmeans<-apply(X=gapminder[,c(3,5,6)],    #the data you want to use
                FUN=mean)                 #take the mean of the rows
 ```
 
-#####Subsetting Rows. 
+#####Subsetting by values
 
 But what if you only want to see values for a certain country or continent? That's
 where the __subset__ function comes in. Suppose you want to get population 

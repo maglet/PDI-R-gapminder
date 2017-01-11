@@ -86,16 +86,25 @@ What you can do with the data set in r depends on the content and type of
 data in __gapminder__. 
 
 To find out the format that R is storing the data in, you can use the function
-__class__. Every variable in R has a class, including the variables __x__ and 
-__y__ from earlier. Let's see what class these two items are. 
+__class__. Every variable in R has a class, including the variables __x__ from earlier. Let's see what class these two items are. 
 
 ```{r}
+x<-4
 class(x)
-class(phrase)
-class(gapminder)
+
 ```
 
-__x__ is numeric; __phrase__ is character, as expected. 
+__x__ is a numeric variable.  
+
+```{r}
+phrase<-"This is not in a comment"
+class(phrase)
+```
+__phrase__ is character, as expected. 
+```{r}
+gapminder<-read.csv("gapminder.csv")
+class(gapminder)
+```
 
 gapminder is a __data frame__. This is a special R format that makes dealing 
 with tabular data easier.  
