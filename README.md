@@ -7,5 +7,5 @@
 * Pt 4: [Working with data frames](https://github.com/maglet/PDI-R-gapminder/blob/master/R-for-Beginners-pt-4.Rmd)  
 * Pt 5: [Plotting data](https://github.com/maglet/PDI-R-gapminder/blob/master/R-for-Beginners-pt-5.Rmd)  
 
-[Challenge Questions](https://github.com/maglet/PDI-R-gapminder/blob/master/R-for-Beginners-Challenges.html)
+[Challenge Questions](https://github.com/maglet/PDI-R-gapminder/blob/master/R-for-Beginners-Challenges.Rmd)
 
