@@ -163,3 +163,10 @@ summary(gapminder)
 * You can find functions in the base R installation, packages, or create your own
 * Functions can help you download files (download.file) and import data (read.csv)
 * Base R has usefil functions for examining values and data (class, str, head, summary)
+
+###Challenge Questions
+1. How would you find the help file for par: a function that alters graphics parameters?
+
+2. What is the second argument of the t.test function?
+
+3. What happens if you don't use the destfile argument in the download.file function?

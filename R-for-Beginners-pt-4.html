@@ -203,12 +203,38 @@ colsds&lt;-apply(X=gapminder[,c(3,5,6)],     #the data you want to use
 <div id="take-home-points" class="section level3">
 <h3>Take home points:</h3>
 <ul>
-<li>you can subset data frames by row or columns using bracket notations</li>
+<li>You can subset data frames by row or columns using bracket notations</li>
 <li>You can also subset columns by name using <data frame>$<variable name></li>
 <li>Apply lets you perform functions on rows or columns in a data frame</li>
 <li>The subset function lets you subset by categorical values</li>
 <li>R has built in statistical functions</li>
 </ul>
+</div>
+<div id="challenge-questions" class="section level3">
+<h3>Challenge questions:</h3>
+<div id="fix-each-of-the-following-common-data-frame-subsetting-errors" class="section level4">
+<h4>Fix each of the following common data frame subsetting errors:</h4>
+<ol style="list-style-type: decimal">
+<li>Extract observations collected for the year 1957:</li>
+</ol>
+<pre class="r"><code>gapminder[gapminder$year = 1957,]  </code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Extract all columns 1 through to 4:</li>
+</ol>
+<pre class="r"><code>gapminder[,1,4]  </code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Extract the rows where the life expectancy is longer the 80 years</li>
+</ol>
+<pre class="r"><code>gapminder[gapminder$lifeExp &gt; 80]  </code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Extract the first row, and the fourth and fifth columns (lifeExp and gdpPercap).</li>
+</ol>
+<pre class="r"><code>gapminder[1, 4, 5]  </code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Advanced: extract rows that contain information for the years 2002 and 2007</li>
+</ol>
+<pre class="r"><code>gapminder[gapminder$year == 2002 | 2007,]   </code></pre>
+</div>
 </div>
 
 

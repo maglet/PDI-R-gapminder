@@ -64,9 +64,9 @@ Error message saying it's not optional
 # gapminder[gapminder$year = 1957,]  
 gapminder[gapminder$year == 1957,]
 ```
-####2. Extract all columns except 1 through to 4
+####2. Extract all columns 1 through to 4
 ```{r eval=FALSE}
-# gapminder[,-1:4]  
+# gapminder[,1,4]  
 gapminder[,-c(1:4)]
 ```
 ####3. Extract the rows where the life expectancy is longer the 80 years
@@ -165,5 +165,3 @@ hist(x=gapminder$pop,    #plots life expectancy for all countries in all years
      ylab="Frequency",                                 #y axis label
      col="red")                                       #color
 ```
-
-####5.

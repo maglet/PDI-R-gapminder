@@ -76,3 +76,11 @@ See what the different windows represent below.
 * R studio project allow you to organize your work in 1 place
 * R scripts allow you to save your code to re-run or edit
 * R studio can integrate git, a version control system
+
+### Challenge Questions: 
+1. What does the bottom right window (console) of the R studio interface do?
+
+2. Why should you set up a .git repository in your project directory?
+keep track of changes, backup online
+
+3. If you don't specify otherwise, which directory is R studio workingin by default when you open a project

@@ -136,3 +136,28 @@ That's a pretty low p value.
 * Apply lets you perform functions on rows or columns in a data frame
 * The subset function lets you subset by categorical values
 * R has built in statistical functions
+
+### Challenge questions: 
+
+#### Fix each of the following common data frame subsetting errors:
+
+1. Extract observations collected for the year 1957: 
+```{r eval=FALSE}
+gapminder[gapminder$year = 1957,]  
+```
+2. Extract all columns 1 through to 4: 
+```{r eval=FALSE}
+gapminder[,1,4]  
+```
+3. Extract the rows where the life expectancy is longer the 80 years
+```{r eval=FALSE}
+gapminder[gapminder$lifeExp > 80]  
+```
+4. Extract the first row, and the fourth and fifth columns (lifeExp and gdpPercap).
+```{r eval=FALSE}
+gapminder[1, 4, 5]  
+```
+5. Advanced: extract rows that contain information for the years 2002 and 2007
+```{r eval=FALSE}
+gapminder[gapminder$year == 2002 | 2007,]   
+```

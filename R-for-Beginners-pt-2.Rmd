@@ -127,3 +127,11 @@ Other logical operators inclue
 * relational operators let you compare values
 * logical operators let you combine logical values
 * arithmetic operators perform arithmetic like addition, subtraction, multiplication and division
+
+### Challenge questions:
+
+1. How would you assign the value 467 to the variable kitten?
+
+2. How woud you determine if the variable cat is greater than the variable dog and that cat is less than pony??
+
+3. Pretend you want to know whether the sum of red and blue is greater than the difference between green and purple. How would you write that out?

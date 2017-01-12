@@ -35,14 +35,29 @@ hist(x=gapminder$lifeExp,    #plots life expectancy for all countries in all yea
 
 This allows you to see how your data are distributed. Remember how hard it is to [make a histogram in Excel](https://support.microsoft.com/en-us/kb/214269)? That's a thing of the past for you now.
 
-Now let's look at making a bar chart of the average life expectancy for each year.
+Now let's look at making a bar chart of the average life expectancy for each continent. First, we have to generate this value for each continent. For that we will need to use a for loop:
 
 ```{r}
-barplot(height=gapminder[37:48,5],                    #height of the bars 
-        main="Mean life expectancy in Angola 1952-2007",  #main graph title
-        xlab="Year",            #x axis label
-        ylab="Mean Life expectancy",            #y axis label
-        col="green")          #blue bars
+continents<-levels(gapminder$continent) #create a list of continents
+heights<-NULL                           #make an empty variable that will store heights
+sds<-NULL                               #make an empty variable that will store sds for error bars
+
+for(i in continents){                        #for every continent
+       sub<-subset(gapminder, continent==i)  #make a subset with only that continent
+       avg<-mean(sub$lifeExp)                #take the average life exp for that continent
+       sd<-sd(sub$lifeExp)                   #take the sd of life exp for that continent
+       heights<-append(heights, avg)         #add this value to the list of avg life exp
+       sds<-append(sds, sd)                  #add this value to the list of avg life exp
+}
+```
+
+```{r}
+barplot(height=heights,                                  #height of the bars 
+        main="Mean life expectancy for each continent",  #main graph title
+        xlab="Continent",                                #x axis label
+        ylab="Mean Life expectancy",                     #y axis label
+        names.arg = continents,                          #specify bar labels
+        col="green")                                     #green bars
 ```
 
 But wait, where are the error bars? This requires some extra code.
@@ -82,21 +97,19 @@ plot in the function call.
 
 ```{r}
 #This command draws the plot w/o error bars
-barx <- barplot(height=gapminder[37:48,5],     #height of the bars 
-                ylim=c(0,50),        #y axis range, determined by tweaking
+barx <- barplot(height=heights,                 #height of the bars 
+                names.arg = continents,                          #specify bar labels
+                ylim=c(0,90),        #y axis range, determined by tweaking
                 col="green",          #blue bars
                 axis.lty=1,          #choose line type (opaque) for y axis
-                xlab="Year",                #x axis label
+                xlab="Continent",                #x axis label
                 ylab="Mean life expectancy") #y axis label
 
 #this function draws the error bars
-error.bar(barx, gapminder[37:48,5], rep(5, length(gapminder[37:48,5])))
+error.bar(barx, heights, sds)
 ```
 
-(The error is appearing because the error bar for day 1 is length zero, because
-all values on day 1 are 0.)
-
-Now let's draw a box plot, separating the data based on continent.
+Now let's draw a box plot for population, separating the data based on continent.
 
 ```{r}
           #Data to plot      #factor to separate on
@@ -117,14 +130,13 @@ boxplot(gapminder$pop ~ gapminder$continent,
         ylim=c(0,1.2e+08))
 ```
 
-We can also use colors to differentiate data points based on continent. First, 
-print out the life expectancy data:
+We can also make a scatter plot of 2 variables: 
 
 ```{r}
 plot(gapminder$gdpPercap, gapminder$lifeExp)
 ```
 
-Let's see which of these data points are from which continent. I also altered some other useful base graphics packages to get the image ready for publication:
+Let's see which of these data points are from which continenr using the col command. I also altered some other useful base graphics packages to get the image ready for publication:
 
 ```{r}
 plot(gapminder$gdpPercap, gapminder$lifeExp,
@@ -163,10 +175,51 @@ legend(x= 8e+04,                                #x position of legend
        pch=16)                              #specifies how to draw symbols
 ```
 
+We can also edit the axis labels to make them prettier:    
+* tell the original plot not to plot an axis using xaxt = 'n'
+* draw an axis using the axis function
+* make sure to change the xlab to reflect the changes
+
+```{r}
+plot(gapminder$gdpPercap, gapminder$lifeExp,
+     xlab="GDP per capita (in 1000s)",        #X axis label
+     ylab= "LifeExpectancy (years)",    #Y axis label (somehow get )
+     las= 1,                  #Make numbers horizontal on the x axis, 
+     cex.lab=1.2,             #Increase axis labels font size
+     cex.axis=1.2,            #Increase axis label number size
+     lwd=2,                   #Increase line/dot thickness
+     bty = "n",               #removes black border around the plot
+     pch=16,                  #Specifies symbols to draw
+     ylim= c(0,100),            #set y axis limits
+     xaxt='n',                 #remove x axis label
+     col = gapminder$continent) #Set Color based on Continent
+
+legend(x= 8e+04,                                #x position of legend
+       y=50,                                #y position of legend
+       legend=levels(gapminder$continent),  #Legend text 
+       col = c(1:5),
+       pch=16)                              #specifies how to draw symbols
+
+axis(side=1, 
+     at = c(0, 2e+04, 4e+04, 6e+04, 8e+04, 1e+05), 
+     labels=c(0, 20, 40, 60, 80, 100))
+
+```
+
 ###Take home points
 * The R base graphics package allows you to make histograms, bar plots, box plots, and scatter plots
 * These plots can be colorized based on factors
 * grapics parameters can be used to alter the look of the plot
+
+### Challenge questions
+####Consider the scatter plot of GDP vs. life expectancy.
+1. How would you include only data from 2007? (remember subsetting)
+
+2. How would you change the data to log axis? (Hint: look at the arguments)
+
+3. How would you make a similar plot from European countries, and colorize by year?
+
+4. Make a red histogram of population for all countries in 2007
 
 #Resources
 Congrats! Now you can plot tabular data in R! If you want to learn more, see 
